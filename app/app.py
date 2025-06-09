@@ -5,6 +5,9 @@ from app.pages.login import login_page
 from app.pages.admin import admin_page
 from app.states.auth_state import AuthState
 from app.states.state import BarberState
+from app.states.db_service import init_db
+
+init_db()
 
 
 def index() -> rx.Component:

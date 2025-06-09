@@ -8,7 +8,6 @@ from app.states.db_service import (
     get_all_appointments,
     add_appointment_db,
     delete_appointment_db,
-    init_db,
 )
 
 
@@ -71,7 +70,6 @@ class BarberState(rx.State):
 
     @rx.event
     def load_appointments(self):
-        init_db()
         self.appointments = get_all_appointments()
 
     @rx.event

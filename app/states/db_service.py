@@ -15,17 +15,21 @@ class Appointment(TypedDict):
 
 
 def get_db_path() -> str:
-    return "app.db"
+    """Returns the path to the database file."""
+    return "app/states/app.db"
 
 
 def get_db_connection() -> sqlite3.Connection:
+    """Establishes a connection to the SQLite database."""
     db_path = get_db_path()
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     return conn
 
 
 def init_db():
+    """Initializes the database and creates the 'appointments' table if it doesn't exist."""
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
@@ -36,7 +40,7 @@ def init_db():
 
 
 def get_all_appointments() -> list[Appointment]:
-    init_db()
+    """Fetches all appointments from the database."""
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM appointments")
@@ -46,7 +50,7 @@ def get_all_appointments() -> list[Appointment]:
 
 
 def add_appointment_db(appointment: Appointment):
-    init_db()
+    """Adds a new appointment to the database."""
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
@@ -66,7 +70,7 @@ def add_appointment_db(appointment: Appointment):
 
 
 def delete_appointment_db(appointment_id: str):
-    init_db()
+    """Deletes an appointment from the database by its ID."""
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
