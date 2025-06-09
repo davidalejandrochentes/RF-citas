@@ -3,16 +3,13 @@ from typing import TypedDict
 import datetime
 import calendar
 import uuid
-
-
-class Appointment(TypedDict):
-    id: str
-    name: str
-    phone: str
-    date: str
-    time: str
-    service: str
-    barber: str
+from app.states.db_service import (
+    Appointment,
+    get_all_appointments,
+    add_appointment_db,
+    delete_appointment_db,
+    init_db,
+)
 
 
 class BarberState(rx.State):
@@ -71,6 +68,11 @@ class BarberState(rx.State):
         "Sá",
         "Do",
     ]
+
+    @rx.event
+    def load_appointments(self):
+        init_db()
+        self.appointments = get_all_appointments()
 
     @rx.event
     def select_date(self, date_str: str):
@@ -133,26 +135,24 @@ class BarberState(rx.State):
                 "Error: faltan detalles de la cita.",
                 duration=3000,
             )
-        self.appointments.append(
-            Appointment(
-                id=str(uuid.uuid4()),
-                name=self.pending_appointment_data["name"],
-                phone=self.pending_appointment_data[
-                    "phone"
-                ],
-                date=self.selected_date,
-                time=self.selected_time,
-                service=self.pending_appointment_data[
-                    "service"
-                ],
-                barber=self.selected_barber,
-            )
+        new_appointment = Appointment(
+            id=str(uuid.uuid4()),
+            name=self.pending_appointment_data["name"],
+            phone=self.pending_appointment_data["phone"],
+            date=self.selected_date,
+            time=self.selected_time,
+            service=self.pending_appointment_data[
+                "service"
+            ],
+            barber=self.selected_barber,
         )
+        add_appointment_db(new_appointment)
         self.show_confirm_dialog = False
         self.pending_appointment_data = {}
         self.selected_date = ""
         self.selected_time = ""
         self.selected_barber = ""
+        yield BarberState.load_appointments()
         return rx.toast(
             "Cita agendada con éxito!", duration=3000
         )
@@ -164,11 +164,8 @@ class BarberState(rx.State):
 
     @rx.event
     def delete_appointment(self, appointment_id: str):
-        self.appointments = [
-            app
-            for app in self.appointments
-            if app["id"] != appointment_id
-        ]
+        delete_appointment_db(appointment_id)
+        yield BarberState.load_appointments()
 
     @rx.var
     def sorted_appointments(self) -> list[Appointment]:

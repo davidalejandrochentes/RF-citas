@@ -4,6 +4,7 @@ from app.components.appointment_list import appointment_list
 from app.pages.login import login_page
 from app.pages.admin import admin_page
 from app.states.auth_state import AuthState
+from app.states.state import BarberState
 
 
 def index() -> rx.Component:
@@ -40,6 +41,7 @@ def index() -> rx.Component:
             class_name="container mx-auto flex flex-col items-center p-4 md:p-8",
         ),
         class_name="min-h-screen bg-gray-50 font-['Inter']",
+        on_mount=BarberState.load_appointments,
     )
 
 
@@ -69,5 +71,8 @@ app.add_page(
     admin_page,
     route="/admin",
     title="Panel de Administrador",
-    on_load=AuthState.check_login,
+    on_load=[
+        AuthState.check_login,
+        BarberState.load_appointments,
+    ],
 )
