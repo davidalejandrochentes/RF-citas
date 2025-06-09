@@ -13,7 +13,7 @@ def index() -> rx.Component:
                         class_name="h-10 w-10 text-blue-600",
                     ),
                     rx.el.h1(
-                        "Barbería El Tío",
+                        "Barbería Mr. Barber",
                         class_name="text-4xl font-extrabold tracking-tight text-gray-800",
                     ),
                     class_name="flex items-center gap-4",
