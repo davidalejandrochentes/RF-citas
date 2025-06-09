@@ -1,6 +1,9 @@
 import reflex as rx
 from app.components.appointment_form import appointment_form
 from app.components.appointment_list import appointment_list
+from app.pages.login import login_page
+from app.pages.admin import admin_page
+from app.states.auth_state import AuthState
 
 
 def index() -> rx.Component:
@@ -26,6 +29,14 @@ def index() -> rx.Component:
             ),
             appointment_form(),
             appointment_list(),
+            rx.el.div(
+                rx.el.a(
+                    "Admin Login",
+                    href="/login",
+                    class_name="text-sm text-gray-500 hover:text-blue-600 underline",
+                ),
+                class_name="w-full max-w-3xl mt-8 text-center",
+            ),
             class_name="container mx-auto flex flex-col items-center p-4 md:p-8",
         ),
         class_name="min-h-screen bg-gray-50 font-['Inter']",
@@ -51,3 +62,12 @@ app = rx.App(
     ],
 )
 app.add_page(index, route="/", title="Barbería El Tío")
+app.add_page(
+    login_page, route="/login", title="Admin Login"
+)
+app.add_page(
+    admin_page,
+    route="/admin",
+    title="Panel de Administrador",
+    on_load=AuthState.check_login,
+)

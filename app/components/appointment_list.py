@@ -1,5 +1,6 @@
 import reflex as rx
 from app.states.state import BarberState, Appointment
+from app.states.auth_state import AuthState
 
 
 def _appointment_card(
@@ -19,12 +20,16 @@ def _appointment_card(
                     ),
                     class_name="flex items-center gap-3",
                 ),
-                rx.el.button(
-                    rx.icon("x", class_name="w-4 h-4"),
-                    on_click=lambda: BarberState.delete_appointment(
-                        appointment["id"]
+                rx.cond(
+                    AuthState.is_logged_in,
+                    rx.el.button(
+                        rx.icon("x", class_name="w-4 h-4"),
+                        on_click=lambda: BarberState.delete_appointment(
+                            appointment["id"]
+                        ),
+                        class_name="text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-full transition-colors",
                     ),
-                    class_name="text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-full transition-colors",
+                    rx.el.div(),
                 ),
                 class_name="flex justify-between items-center",
             ),
