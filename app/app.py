@@ -13,6 +13,7 @@ init_db()
 def index() -> rx.Component:
     return rx.el.main(
         rx.el.div(
+
             rx.el.div(
                 rx.el.div(
                     rx.icon(
@@ -20,7 +21,7 @@ def index() -> rx.Component:
                         class_name="h-10 w-10 text-blue-600",
                     ),
                     rx.el.h1(
-                        "Barbería Mr. Barber",
+                        "Chentes Barber",
                         class_name="text-4xl font-extrabold tracking-tight text-gray-800",
                     ),
                     class_name="flex items-center gap-4",
@@ -31,9 +32,16 @@ def index() -> rx.Component:
                 ),
                 class_name="text-center mb-10",
             ),
+
             appointment_form(),
-            appointment_list(),
+
+            #appointment_list(),
+
             rx.el.div(
+                rx.el.p(
+                    "Para cancelaciones, contactar a 55499507",
+                    class_name="text-sm text-gray-500",
+                ),
                 rx.el.a(
                     "Admin Login",
                     href="/login",
@@ -41,8 +49,10 @@ def index() -> rx.Component:
                 ),
                 class_name="w-full max-w-3xl mt-8 text-center",
             ),
+            
             class_name="container mx-auto flex flex-col items-center p-4 md:p-8",
         ),
+
         class_name="min-h-screen bg-gray-50 font-['Inter']",
         on_mount=BarberState.load_appointments,
     )
@@ -66,10 +76,8 @@ app = rx.App(
         ),
     ],
 )
-app.add_page(index, route="/", title="Barbería El Tío")
-app.add_page(
-    login_page, route="/login", title="Admin Login"
-)
+app.add_page(index, route="/", title="Mr. Barber")
+app.add_page(login_page, route="/login", title="Admin Login")
 app.add_page(
     admin_page,
     route="/admin",
