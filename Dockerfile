@@ -1,19 +1,20 @@
-FROM python:3.12.9-alpine3.21
+FROM python:3.12.9-slim
 
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
-# Instalar Node.js y npm además de las dependencias de Python
-RUN apk update \
- && apk add --no-cache gcc musl-dev python3-dev libffi-dev nodejs npm \
- && pip install --upgrade pip
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    nodejs \
+    npm \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --upgrade pip
 
 COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
 
 COPY ./ ./
-
-# Simplemente ejecutar reflex init sin opciones
-RUN reflex init
 
 CMD ["sh", "entrypoint.sh"]
