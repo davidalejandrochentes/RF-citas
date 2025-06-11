@@ -101,10 +101,10 @@ def appointment_list() -> rx.Component:
             class_name="text-2xl font-bold text-gray-800 mb-6 text-center",
         ),
         rx.cond(
-            BarberState.sorted_appointments.length() > 0,
+            BarberState.filtered_appointments.length() > 0,
             rx.el.div(
                 rx.foreach(
-                    BarberState.sorted_appointments,
+                    BarberState.filtered_appointments,
                     _appointment_card,
                 ),
                 class_name="flex flex-col gap-6",
@@ -115,11 +115,11 @@ def appointment_list() -> rx.Component:
                     class_name="w-16 h-16 text-gray-300",
                 ),
                 rx.el.p(
-                    "No hay citas agendadas.",
+                    "No hay citas que coincidan con la búsqueda.",
                     class_name="text-gray-500 mt-4",
                 ),
                 class_name="flex flex-col items-center justify-center bg-gray-50 p-10 rounded-xl border border-dashed border-gray-200",
             ),
         ),
-        class_name="w-full max-w-3xl mt-12",
+        class_name="w-full max-w-3xl",
     )

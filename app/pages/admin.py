@@ -242,6 +242,63 @@ def service_manager() -> rx.Component:
     )
 
 
+def _filter_controls() -> rx.Component:
+    return rx.el.div(
+        rx.el.h3(
+            "Filtrar Citas",
+            class_name="text-xl font-bold text-gray-800 mb-4",
+        ),
+        rx.el.div(
+            rx.el.input(
+                placeholder="Nombre del cliente",
+                on_change=BarberState.set_filter_name.debounce(
+                    300
+                ),
+                default_value=BarberState.filter_name,
+                class_name="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500",
+            ),
+            rx.el.input(
+                placeholder="Teléfono",
+                on_change=BarberState.set_filter_phone.debounce(
+                    300
+                ),
+                default_value=BarberState.filter_phone,
+                type="tel",
+                class_name="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500",
+            ),
+            rx.el.input(
+                on_change=BarberState.set_filter_date,
+                default_value=BarberState.filter_date,
+                type="date",
+                class_name="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500",
+            ),
+            rx.el.select(
+                rx.el.option(
+                    "Todos los servicios", value=""
+                ),
+                rx.foreach(
+                    BarberState.services,
+                    lambda service: rx.el.option(
+                        service["name"],
+                        value=service["name"],
+                    ),
+                ),
+                on_change=BarberState.set_filter_service,
+                default_value=BarberState.filter_service,
+                key=f"filter-service-{BarberState.filter_service}",
+                class_name="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 bg-white",
+            ),
+            class_name="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4",
+        ),
+        rx.el.button(
+            "Limpiar Filtros",
+            on_click=BarberState.clear_filters,
+            class_name="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 font-medium transition-colors",
+        ),
+        class_name="w-full bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-8",
+    )
+
+
 def admin_page() -> rx.Component:
     return rx.el.main(
         _edit_barber_dialog(),
@@ -264,6 +321,7 @@ def admin_page() -> rx.Component:
                 service_manager(),
                 class_name="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8",
             ),
+            _filter_controls(),
             appointment_list(),
             class_name="container mx-auto flex flex-col items-center p-4 md:p-8",
         ),

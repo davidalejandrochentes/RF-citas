@@ -81,6 +81,10 @@ class BarberState(rx.State):
         "Sá",
         "Do",
     ]
+    filter_name: str = ""
+    filter_phone: str = ""
+    filter_service: str = ""
+    filter_date: str = ""
 
     @rx.event
     def load_data(self):
@@ -280,6 +284,29 @@ class BarberState(rx.State):
         delete_appointment_db(appointment_id)
         yield BarberState.load_data()
 
+    @rx.event
+    def set_filter_name(self, name: str):
+        self.filter_name = name
+
+    @rx.event
+    def set_filter_phone(self, phone: str):
+        self.filter_phone = phone
+
+    @rx.event
+    def set_filter_service(self, service: str):
+        self.filter_service = service
+
+    @rx.event
+    def set_filter_date(self, date: str):
+        self.filter_date = date
+
+    @rx.event
+    def clear_filters(self):
+        self.filter_name = ""
+        self.filter_phone = ""
+        self.filter_service = ""
+        self.filter_date = ""
+
     @rx.var
     def barber_names(self) -> list[str]:
         return [barber["name"] for barber in self.barbers]
@@ -299,6 +326,36 @@ class BarberState(rx.State):
                 ).time(),
             ),
         )
+
+    @rx.var
+    def filtered_appointments(self) -> list[Appointment]:
+        appointments = self.sorted_appointments
+        if self.filter_name:
+            appointments = [
+                app
+                for app in appointments
+                if self.filter_name.lower()
+                in app["name"].lower()
+            ]
+        if self.filter_phone:
+            appointments = [
+                app
+                for app in appointments
+                if self.filter_phone in app["phone"]
+            ]
+        if self.filter_service:
+            appointments = [
+                app
+                for app in appointments
+                if app["service"] == self.filter_service
+            ]
+        if self.filter_date:
+            appointments = [
+                app
+                for app in appointments
+                if app["date"] == self.filter_date
+            ]
+        return appointments
 
     @rx.var
     def display_month_str(self) -> str:
