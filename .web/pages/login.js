@@ -9,17 +9,17 @@ import { jsx } from "@emotion/react"
 
 
 
-export function Form_149e8c645482143f4240ac6df354fb6d () {
+export function Form_45143cf4542635cb57a099c29a51939f () {
   
   const [addEvents, connectErrors] = useContext(EventLoopContext);
   const ref_username = useRef(null); refs["ref_username"] = ref_username;
   const ref_password = useRef(null); refs["ref_password"] = ref_password;
 
   
-    const handleSubmit_07240263eb8ff685ddec3eff249574cf = useCallback((ev) => {
+    const handleSubmit_76a156c2be8a201130f55ae3f113bf99 = useCallback((ev) => {
         const $form = ev.target
         ev.preventDefault()
-        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...({ ["username"] : getRefValue(refs["ref_username"]), ["password"] : getRefValue(refs["ref_password"]) })};
+        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...({ ["password"] : getRefValue(refs["ref_password"]), ["username"] : getRefValue(refs["ref_username"]) })};
 
         (((...args) => (addEvents([(Event("reflex___state____state.app___states___auth_state____auth_state.login", ({ ["form_data"] : form_data }), ({  })))], args, ({  }))))(ev));
 
@@ -36,14 +36,14 @@ export function Form_149e8c645482143f4240ac6df354fb6d () {
   return (
     jsx(
 "form",
-{className:"w-full",onSubmit:handleSubmit_07240263eb8ff685ddec3eff249574cf},
+{className:"w-full",onSubmit:handleSubmit_76a156c2be8a201130f55ae3f113bf99},
 jsx(
 "div",
 {className:"w-full mb-4"},
 jsx(
 "label",
 {className:"block text-sm font-medium text-gray-700 mb-1",htmlFor:"username"},
-"Username"
+"Usuario"
 ,),jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors",id:"username",name:"username",placeholder:"admin",ref:ref_username,required:true},)
 ,),jsx(
 "div",
@@ -51,7 +51,7 @@ jsx(
 jsx(
 "label",
 {className:"block text-sm font-medium text-gray-700 mb-1",htmlFor:"password"},
-"Password"
+"Contrase\u00f1a"
 ,),jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors",id:"password",name:"password",placeholder:"admin",ref:ref_password,required:true,type:"password"},)
 ,),jsx(
 "button",
@@ -83,8 +83,8 @@ jsx(
 jsx(
 "h2",
 {className:"text-2xl font-bold text-gray-800 mb-6 text-center"},
-"Admin Login"
-,),jsx(Form_149e8c645482143f4240ac6df354fb6d,{},)
+"Admin"
+,),jsx(Form_45143cf4542635cb57a099c29a51939f,{},)
 ,),),),jsx(
 NextHead,
 {},
