@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm \
     curl \
+    unzip \
     debian-keyring \
     debian-archive-keyring \
     apt-transport-https \
