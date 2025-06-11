@@ -6,11 +6,17 @@ echo "Starting Reflex app in production mode..."
 PORT=${PORT:-8000}
 echo "Using PORT: $PORT"
 
+# Mostrar versiones para debug
+echo "Node version: $(node --version)"
+echo "NPM version: $(npm --version)"
+echo "Python version: $(python --version)"
+
+# Limpiar instalaciones previas si existen
+rm -rf .web/
+
 # Inicializar dependencias si no existen
-if [ ! -d ".web" ]; then
-    echo "Initializing Reflex app..."
-    reflex init --loglevel debug
-fi
+echo "Initializing Reflex app..."
+reflex init --loglevel debug
 
 # Ejecutar Reflex con la configuración correcta para Railway
 echo "Starting Reflex server..."
