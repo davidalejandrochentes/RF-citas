@@ -1,0 +1,89 @@
+sudo snap start wekan
+sudo snap restart wekan
+sudo snap stop wekan
+http://localhost:8080/
+
+ifconfig (localizar el inet)
+python manage.py runserver 0.0.0.0:8000
+nativefier --name innovaplast --full-screen --platform windows https://innovaplast.pythonanywhere.com
+
+
+crear nuevo prollecto :    django-admin startproject nombre_del_proyecto
+version de django : django-admin --version
+python manage.py migrate
+levantar un servidor : python manage.py runserver
+nueva app dentro de un proyecto : python manage.py startapp comentarios
+python manage.py startapp usuarios apps/usuarios
+chequear si una app esta intalada : python manage.py check nombre_de_la_app
+migracion despues de trabajar con modelos : python manage.py makemigrations
+creacion de un super usuario : python manage.py createsuperuser
+
+
+intalar una documentacion par mi api : pip install coreapi
+intalar rest framework : pip install djangorestframework
+comunicar back con from : pip install django-cors-headers
+test unit : pip install pytest-django
+
+pip uninstall nombre_del_paquete_o_librer�a
+
+crear un entorno virtual : virtualenv venv    o tambien puedes usar    pip install virtualenv
+activar el entorno :  source venv/bin/activate    despues de estar activados es que puedes ver los paquetes intalados e intalar uno nuevo
+ver los paquetes intalados : pip list
+desactivar el entorno : deactivate
+exportar los requeriminetos de mi VENV : pip freeze > requirements.txt
+importar los requeriminetos de mi VENV : pip install -r requirements.txt
+
+mkvirtualenv --python=/usr/bin/python3.10 venv
+
+limpiar consola : cls
+
+uvicorn main:app --reload
+
+---------------------------------------------------------------------
+# This file contains the WSGI configuration required to serve up your
+# web application at http://davidale.pythonanywhere.com/
+# It works by setting the variable 'application' to a WSGI handler of some
+# description.
+#
+# The below has been auto-generated for your Django project
+
+import os
+import sys
+
+# add your project directory to the sys.path
+project_home = '/home/davidale/generator_password'
+if project_home not in sys.path:
+    sys.path.insert(0, project_home)
+
+# set environment variable to tell django where your settings.py is
+os.environ['DJANGO_SETTINGS_MODULE'] = 'password.settings'
+
+
+# serve django via WSGI
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+---------------------------------------------------------
+---------------------------------------------------------
+DATABASES = {
+    'default': {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "agenda",
+        "USER": "postgres",
+        "PASSWORD": "DAT121596#",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",
+    }
+}
+---------------------------------------------------------
+---------------------------------------------------------
+find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+find . -path "*/migrations/*.pyc"  -delete
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py migrate --fake <nombre_app> 
+DESCRIBE SGE_maquina_mantenimientomaquina; #esto es pararevisar la tabla mysql de un modelo en espesifico
+
+python manage.py makemigrations
+python manage.py migrate --fake-initial
+---------------------------------------------------------
