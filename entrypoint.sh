@@ -1,4 +1,3 @@
 #!/bin/sh
-
-echo "Starting Reflex app in development mode..."
-reflex run --host 0.0.0.0 --port 3000  # El host 0.0.0.0 permite conexiones externas (necesario en Docker)
+echo "Starting Reflex app in production mode..."
+reflex run --env prod --backend-host 0.0.0.0 --backend-port 3000 --frontend-host 0.0.0.0 --frontend-port 3001
