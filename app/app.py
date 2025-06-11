@@ -69,7 +69,7 @@ app = rx.App(
         ),
     ],
 )
-app.add_page(index, route="/", title="Mr. Barber")
+app.add_page(index, route="/", title="Chentes Barber")
 app.add_page(
     login_page, route="/login", title="Admin Login"
 )
