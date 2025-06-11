@@ -1,3 +1,19 @@
+import reflex as rx
+import os
+
+config = rx.Config(
+    app_name="app",
+    show_built_with_reflex=True,
+    telemetry_enabled=False,
+)
+
+
+
+
+#!/bin/sh 
+echo "Starting Reflex app in production mode..." 
+reflex run --env prod
+
 
 
 FROM python:3.12.9-slim

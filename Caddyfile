@@ -1,0 +1,32 @@
+# Escuchar en el puerto 3000
+:3000 {
+    # Servir archivos estáticos del frontend
+    root * /app/.web/_static
+    
+    # Manejar rutas del backend API - proxy a localhost:8000
+    reverse_proxy /api/* localhost:8000
+    reverse_proxy /_event localhost:8000
+    reverse_proxy /event localhost:8000
+    reverse_proxy /ping localhost:8000
+    
+    # Manejar WebSocket connections
+    reverse_proxy /ws localhost:8000
+    
+    # Para todas las demás rutas, servir el index.html (SPA routing)
+    try_files {path} /index.html
+    
+    # Servir archivos estáticos
+    file_server
+    
+    # Headers para mejor rendimiento
+    header {
+        # Cache estático por 1 año
+        Cache-Control "public, max-age=31536000" {
+            path *.js *.css *.png *.jpg *.jpeg *.gif *.ico *.svg *.woff *.woff2
+        }
+        # No cache para HTML
+        Cache-Control "no-cache, no-store, must-revalidate" {
+            path *.html
+        }
+    }
+}
