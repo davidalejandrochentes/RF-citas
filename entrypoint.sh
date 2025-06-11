@@ -1,5 +1,3 @@
 #!/bin/sh
 echo "Starting Reflex app in production mode..."
-PORT=${PORT:-8000}
-echo "Using port: $PORT"
-reflex run --env prod --backend-host 0.0.0.0 --backend-port $PORT --frontend-port 3001
+reflex run --env prod --backend-host 0.0.0.0 --backend-port 8000 --frontend-port 3000
