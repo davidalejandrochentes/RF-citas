@@ -13,7 +13,6 @@ init_db()
 def index() -> rx.Component:
     return rx.el.main(
         rx.el.div(
-
             rx.el.div(
                 rx.el.div(
                     rx.icon(
@@ -32,11 +31,7 @@ def index() -> rx.Component:
                 ),
                 class_name="text-center mb-10",
             ),
-
             appointment_form(),
-
-            #appointment_list(),
-
             rx.el.div(
                 rx.el.p(
                     "Para cancelaciones, contactar a 55499507",
@@ -49,12 +44,10 @@ def index() -> rx.Component:
                 ),
                 class_name="w-full max-w-3xl mt-8 text-center",
             ),
-            
             class_name="container mx-auto flex flex-col items-center p-4 md:p-8",
         ),
-
         class_name="min-h-screen bg-gray-50 font-['Inter']",
-        on_mount=BarberState.load_appointments,
+        on_mount=BarberState.load_data,
     )
 
 
@@ -77,13 +70,12 @@ app = rx.App(
     ],
 )
 app.add_page(index, route="/", title="Mr. Barber")
-app.add_page(login_page, route="/login", title="Admin Login")
+app.add_page(
+    login_page, route="/login", title="Admin Login"
+)
 app.add_page(
     admin_page,
     route="/admin",
     title="Panel de Administrador",
-    on_load=[
-        AuthState.check_login,
-        BarberState.load_appointments,
-    ],
+    on_load=[AuthState.check_login, BarberState.load_data],
 )

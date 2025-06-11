@@ -92,7 +92,7 @@ def barber_selection_view() -> rx.Component:
                 disabled=True,
             ),
             rx.foreach(
-                BarberState.barbers,
+                BarberState.barber_names,
                 lambda barber: rx.el.option(
                     barber, value=barber
                 ),
@@ -150,7 +150,8 @@ def scheduler() -> rx.Component:
     return rx.el.div(
         calendar_view(),
         rx.cond(
-            BarberState.selected_date != "",
+            (BarberState.selected_date != "")
+            & (BarberState.barbers.length() > 0),
             barber_selection_view(),
         ),
         rx.cond(

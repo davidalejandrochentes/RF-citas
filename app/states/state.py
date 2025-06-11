@@ -5,20 +5,34 @@ import calendar
 import uuid
 from app.states.db_service import (
     Appointment,
+    Barber,
+    Service,
     get_all_appointments,
     add_appointment_db,
     delete_appointment_db,
+    get_all_barbers,
+    add_barber_db,
+    update_barber_db,
+    delete_barber_db,
+    get_all_services,
+    add_service_db,
+    update_service_db,
+    delete_service_db,
 )
 
 
 class BarberState(rx.State):
     appointments: list[Appointment] = []
-    barbers: list[str] = ["Alejandro Chentes"]
-    services: dict[str, int] = {
-        "Corte de Pelo": 20,
-        "Afeitado": 15,
-        "Corte y Afeitado": 30,
-    }
+    barbers: list[Barber] = []
+    services: list[Service] = []
+    new_barber_name: str = ""
+    new_service_name: str = ""
+    new_service_price: int = 0
+    editing_item_id: str = ""
+    editing_item_name: str = ""
+    editing_item_price: int = 0
+    show_edit_barber_dialog: bool = False
+    show_edit_service_dialog: bool = False
     all_possible_times: list[str] = [
         "09:00",
         "09:30",
@@ -69,8 +83,109 @@ class BarberState(rx.State):
     ]
 
     @rx.event
-    def load_appointments(self):
+    def load_data(self):
         self.appointments = get_all_appointments()
+        self.barbers = get_all_barbers()
+        self.services = get_all_services()
+
+    @rx.event
+    def add_barber(self, form_data: dict):
+        barber_name = form_data.get("name", "").strip()
+        if not barber_name:
+            return rx.toast(
+                "El nombre del barbero no puede estar vacío.",
+                duration=3000,
+            )
+        new_barber = Barber(
+            id=str(uuid.uuid4()), name=barber_name
+        )
+        add_barber_db(new_barber)
+        yield BarberState.load_data()
+
+    @rx.event
+    def delete_barber(self, barber_id: str):
+        delete_barber_db(barber_id)
+        yield BarberState.load_data()
+
+    @rx.event
+    def open_edit_barber_dialog(self, barber: Barber):
+        self.editing_item_id = barber["id"]
+        self.editing_item_name = barber["name"]
+        self.show_edit_barber_dialog = True
+
+    @rx.event
+    def save_barber_edit(self, form_data: dict):
+        new_name = form_data.get("name", "").strip()
+        if not new_name:
+            return rx.toast(
+                "El nombre no puede estar vacío.",
+                duration=3000,
+            )
+        update_barber_db(self.editing_item_id, new_name)
+        self.show_edit_barber_dialog = False
+        yield BarberState.load_data()
+
+    @rx.event
+    def close_edit_dialogs(self):
+        self.show_edit_barber_dialog = False
+        self.show_edit_service_dialog = False
+        self.editing_item_id = ""
+        self.editing_item_name = ""
+        self.editing_item_price = 0
+
+    @rx.event
+    def add_service(self, form_data: dict):
+        service_name = form_data.get("name", "").strip()
+        try:
+            price_str = form_data.get("price", "0")
+            service_price = (
+                int(price_str) if price_str else 0
+            )
+        except (ValueError, TypeError):
+            service_price = 0
+        if not service_name or service_price <= 0:
+            return rx.toast(
+                "Por favor, ingrese un nombre y precio válidos para el servicio.",
+                duration=3000,
+            )
+        new_service = Service(
+            id=str(uuid.uuid4()),
+            name=service_name,
+            price=service_price,
+        )
+        add_service_db(new_service)
+        yield BarberState.load_data()
+
+    @rx.event
+    def delete_service(self, service_id: str):
+        delete_service_db(service_id)
+        yield BarberState.load_data()
+
+    @rx.event
+    def open_edit_service_dialog(self, service: Service):
+        self.editing_item_id = service["id"]
+        self.editing_item_name = service["name"]
+        self.editing_item_price = service["price"]
+        self.show_edit_service_dialog = True
+
+    @rx.event
+    def save_service_edit(self, form_data: dict):
+        new_name = form_data.get("name", "").strip()
+        try:
+            price_str = form_data.get("price", "0")
+            new_price = int(price_str) if price_str else 0
+        except (ValueError, TypeError):
+            new_price = 0
+        if not new_name or new_price <= 0:
+            return rx.toast(
+                "Por favor, ingrese un nombre y precio válidos para el servicio.",
+                duration=3000,
+            )
+        update_service_db(
+            self.editing_item_id, new_name, new_price
+        )
+        self.show_edit_service_dialog = False
+        yield BarberState.load_data()
 
     @rx.event
     def select_date(self, date_str: str):
@@ -150,7 +265,7 @@ class BarberState(rx.State):
         self.selected_date = ""
         self.selected_time = ""
         self.selected_barber = ""
-        yield BarberState.load_appointments()
+        yield BarberState.load_data()
         return rx.toast(
             "Cita agendada con éxito!", duration=3000
         )
@@ -163,7 +278,11 @@ class BarberState(rx.State):
     @rx.event
     def delete_appointment(self, appointment_id: str):
         delete_appointment_db(appointment_id)
-        yield BarberState.load_appointments()
+        yield BarberState.load_data()
+
+    @rx.var
+    def barber_names(self) -> list[str]:
+        return [barber["name"] for barber in self.barbers]
 
     @rx.var
     def sorted_appointments(self) -> list[Appointment]:

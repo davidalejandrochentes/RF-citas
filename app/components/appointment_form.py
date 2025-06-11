@@ -36,10 +36,10 @@ def _service_select_field() -> rx.Component:
         ),
         rx.el.select(
             rx.foreach(
-                BarberState.services.items(),
-                lambda service_item: rx.el.option(
-                    f"{service_item[0]} - ${service_item[1]}",
-                    value=service_item[0],
+                BarberState.services,
+                lambda service: rx.el.option(
+                    f"{service['name']} - ${service['price']}",
+                    value=service["name"],
                 ),
             ),
             id="service",
