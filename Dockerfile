@@ -1,27 +1,33 @@
-FROM python:3.12.9-slim
+FROM python:3.10-slim
 
-ENV PYTHONUNBUFFERED=1
+# Establecer directorio de trabajo
 WORKDIR /app
 
-# Instalar dependencias mínimas del sistema
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
-    gcc \
-    g++ \
-    unzip \
+    build-essential \
     curl \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip install --upgrade pip
+    software-properties-common \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-# Instalar Node.js usando el script oficial (versión LTS)
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
-    && apt-get install -y nodejs
+# Copiar archivos de requirements
+COPY requirements.txt .
 
-COPY ./requirements.txt ./
-RUN pip install -r requirements.txt
+# Instalar dependencias de Python
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./ ./
+# Copiar código de la aplicación
+COPY . .
 
-# Exponer el puerto que Railway asignará
-EXPOSE $PORT
+# Crear directorio para la base de datos
+RUN mkdir -p /app/data
 
-CMD ["sh", "entrypoint.sh"]
+# Exponer puerto para Reflex
+EXPOSE 3000
+
+# Usar el script de entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
