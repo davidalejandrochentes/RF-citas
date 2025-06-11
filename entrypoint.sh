@@ -1,11 +1,15 @@
 #!/bin/sh
 
-echo "Preparing Reflex app for production..."
-
-# Exportar el frontend para servir archivos estáticos
-echo "Exporting frontend..."
-reflex export --frontend-only
-
 echo "Starting Reflex app in production mode..."
-# Ejecutar solo el backend que servirá tanto la API como los archivos estáticos
-reflex run --env prod --backend-only --backend-host 0.0.0.0 --backend-port $PORT
+
+# Inicializar la aplicación (esto compila el frontend)
+echo "Initializing Reflex app..."
+reflex init
+
+# Exportar la aplicación estática
+echo "Exporting frontend..."
+reflex export --frontend-only --no-zip
+
+# Ejecutar en modo producción
+echo "Starting production server..."
+reflex run --env prod --backend-only
