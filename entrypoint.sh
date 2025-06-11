@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Obtener el puerto de Railway o usar 3000 por defecto
-PORT=${PORT:-3000}
+# Obtener el puerto de Railway
+PORT=${PORT:-8080}
 
 echo "Starting Reflex app in production mode on port $PORT..."
 
@@ -9,11 +9,10 @@ echo "Starting Reflex app in production mode on port $PORT..."
 export API_URL="https://rf-agenda-de-citas-production.up.railway.app"
 export DEPLOY_URL="https://rf-agenda-de-citas-production.up.railway.app"
 
-# Inicializar y compilar la aplicación
+# Inicializar la aplicación (sin export que está fallando)
 reflex init
-reflex export --frontend-only --no-zip
 
-echo "Reflex app exported successfully"
+echo "Starting production server..."
 
-# Ejecutar en modo producción con un solo puerto
-exec reflex run --env prod --frontend-port $PORT --backend-port $PORT --host 0.0.0.0
+# Ejecutar en modo producción con los parámetros correctos
+exec reflex run --env prod --backend-host 0.0.0.0 --backend-port $PORT
