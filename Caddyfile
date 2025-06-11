@@ -22,11 +22,11 @@
     header {
         # Cache estático por 1 año
         Cache-Control "public, max-age=31536000" {
-            path *.js *.css *.png *.jpg *.jpeg *.gif *.ico *.svg *.woff *.woff2
+            path_regexp \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$
         }
         # No cache para HTML
         Cache-Control "no-cache, no-store, must-revalidate" {
-            path *.html
+            path_regexp \.html$
         }
     }
 }

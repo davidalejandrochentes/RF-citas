@@ -13,4 +13,6 @@ config = rx.Config(
     api_url="http://localhost:3000",
     # Configuración para producción
     deploy_url=os.getenv("DEPLOY_URL", "http://localhost:3000"),
+    # Configuración de Tailwind (para eliminar el warning)
+    tailwind=None,  # o rx.plugins.TailwindV3Plugin() si usas Tailwind
 )
