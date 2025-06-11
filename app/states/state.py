@@ -13,7 +13,7 @@ from app.states.db_service import (
 
 class BarberState(rx.State):
     appointments: list[Appointment] = []
-    barbers: list[str] = ["Frank", "Joe", "Mike"]
+    barbers: list[str] = ["Alejandro Chentes"]
     services: dict[str, int] = {
         "Corte de Pelo": 20,
         "Afeitado": 15,
