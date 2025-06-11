@@ -144,6 +144,96 @@ service["name"]
   )
 }
 
+export function Div_2242b9ae24b56413e655a368444fb405 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+  const reflex___state____state__app___states___auth_state____auth_state = useContext(StateContexts.reflex___state____state__app___states___auth_state____auth_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+
+
+
+  
+  return (
+    jsx(
+"div",
+{className:"flex flex-col gap-6"},
+reflex___state____state__app___states___state____barber_state.filtered_appointments.map((appointment,index_03d02ec4fbbd1cd4)=>(jsx(
+"div",
+{className:"bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300",key:index_03d02ec4fbbd1cd4},
+jsx(
+"div",
+{},
+jsx(
+"div",
+{className:"flex justify-between items-center"},
+jsx(
+"div",
+{className:"flex items-center gap-3"},
+jsx(LucideUser,{className:"w-5 h-5 text-blue-500"},)
+,jsx(
+"p",
+{className:"font-semibold text-lg text-gray-800"},
+appointment["name"]
+,),),jsx(
+Fragment,
+{},
+(reflex___state____state__app___states___auth_state____auth_state.is_logged_in ? (jsx(
+Fragment,
+{},
+jsx(
+"button",
+{className:"text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-full transition-colors",onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.delete_appointment", ({ ["appointment_id"] : appointment["id"] }), ({  })))], args, ({  }))))},
+jsx(LucideX,{className:"w-4 h-4"},)
+,),)) : (jsx(
+Fragment,
+{},
+jsx("div",{},)
+,))),),),jsx("div",{className:"my-4 border-t border-gray-100"},)
+,jsx(
+"div",
+{className:"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 text-center sm:text-left"},
+jsx(
+"div",
+{className:"flex items-center gap-2"},
+jsx(LucideCalendar,{className:"w-4 h-4 text-gray-500"},)
+,jsx(
+"span",
+{className:"text-sm text-gray-600"},
+(appointment["date"]+" a las ")
+,),jsx(
+Moment,
+{className:"text-sm text-gray-600",format:"hh:mm A",parse:"HH:mm"},
+appointment["time"]
+,),),jsx(
+"div",
+{className:"flex items-center gap-2"},
+jsx(LucideScissors,{className:"w-4 h-4 text-gray-500"},)
+,jsx(
+"p",
+{className:"text-sm text-gray-600"},
+appointment["service"]
+,),),jsx(
+"div",
+{className:"flex items-center gap-2"},
+jsx(LucideUserCheck,{className:"w-4 h-4 text-gray-500"},)
+,jsx(
+"p",
+{className:"text-sm text-gray-600"},
+("con "+appointment["barber"])
+,),),jsx(
+"div",
+{className:"flex items-center gap-2"},
+jsx(LucidePhone,{className:"w-4 h-4 text-gray-500"},)
+,jsx(
+"p",
+{className:"text-sm text-gray-600"},
+appointment["phone"]
+,),),),),))),)
+  )
+}
+
 export function Button_832887a0ad0a4c2b5ef6432dcbf1466d () {
   
   const [addEvents, connectErrors] = useContext(EventLoopContext);
@@ -324,38 +414,6 @@ jsx(
   )
 }
 
-export function Fragment_eb99b904cf087aff82907b0720c7744e () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-Fragment,
-{},
-((reflex___state____state__app___states___state____barber_state.filtered_appointments.length > 0) ? (jsx(
-Fragment,
-{},
-jsx(Div_e4af55bb00be01720d779c7d4e42e1b6,{},)
-,)) : (jsx(
-Fragment,
-{},
-jsx(
-"div",
-{className:"flex flex-col items-center justify-center bg-gray-50 p-10 rounded-xl border border-dashed border-gray-200"},
-jsx(LucideCalendarOff,{className:"w-16 h-16 text-gray-300"},)
-,jsx(
-"p",
-{className:"text-gray-500 mt-4"},
-"No hay citas que coincidan con la b\u00fasqueda."
-,),),))),)
-  )
-}
-
 export function Form_a95dc94aed8459b371cc339b581835fa () {
   
   const [addEvents, connectErrors] = useContext(EventLoopContext);
@@ -453,6 +511,38 @@ export function Button_d4bc67048442ecbfbc79d48aae68ccc2 () {
   )
 }
 
+export function Fragment_45cf97bb94ac835a5855cb3c56a7ea68 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+Fragment,
+{},
+((reflex___state____state__app___states___state____barber_state.filtered_appointments.length > 0) ? (jsx(
+Fragment,
+{},
+jsx(Div_2242b9ae24b56413e655a368444fb405,{},)
+,)) : (jsx(
+Fragment,
+{},
+jsx(
+"div",
+{className:"flex flex-col items-center justify-center bg-gray-50 p-10 rounded-xl border border-dashed border-gray-200"},
+jsx(LucideCalendarOff,{className:"w-16 h-16 text-gray-300"},)
+,jsx(
+"p",
+{className:"text-gray-500 mt-4"},
+"No hay citas que coincidan con la b\u00fasqueda."
+,),),))),)
+  )
+}
+
 export function Input_ef448e319296942db4c478d519989941 () {
   
   const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
@@ -465,96 +555,6 @@ export function Input_ef448e319296942db4c478d519989941 () {
   return (
     jsx("input",{className:"w-full px-4 py-2 mt-4 rounded-lg border",defaultValue:reflex___state____state__app___states___state____barber_state.editing_item_name,name:"name",placeholder:"Nombre del barbero"},)
 
-  )
-}
-
-export function Div_e4af55bb00be01720d779c7d4e42e1b6 () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-  const reflex___state____state__app___states___auth_state____auth_state = useContext(StateContexts.reflex___state____state__app___states___auth_state____auth_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-
-
-
-  
-  return (
-    jsx(
-"div",
-{className:"flex flex-col gap-6"},
-reflex___state____state__app___states___state____barber_state.filtered_appointments.map((appointment,index_03d02ec4fbbd1cd4)=>(jsx(
-"div",
-{className:"bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300",key:index_03d02ec4fbbd1cd4},
-jsx(
-"div",
-{},
-jsx(
-"div",
-{className:"flex justify-between items-center"},
-jsx(
-"div",
-{className:"flex items-center gap-3"},
-jsx(LucideUser,{className:"w-5 h-5 text-blue-500"},)
-,jsx(
-"p",
-{className:"font-semibold text-lg text-gray-800"},
-appointment["name"]
-,),),jsx(
-Fragment,
-{},
-(reflex___state____state__app___states___auth_state____auth_state.is_logged_in ? (jsx(
-Fragment,
-{},
-jsx(
-"button",
-{className:"text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-full transition-colors",onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.delete_appointment", ({ ["appointment_id"] : appointment["id"] }), ({  })))], args, ({  }))))},
-jsx(LucideX,{className:"w-4 h-4"},)
-,),)) : (jsx(
-Fragment,
-{},
-jsx("div",{},)
-,))),),),jsx("div",{className:"my-4 border-t border-gray-100"},)
-,jsx(
-"div",
-{className:"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 text-center sm:text-left"},
-jsx(
-"div",
-{className:"flex items-center gap-2"},
-jsx(LucideCalendar,{className:"w-4 h-4 text-gray-500"},)
-,jsx(
-"span",
-{className:"text-sm text-gray-600"},
-(appointment["date"]+" a las ")
-,),jsx(
-Moment,
-{className:"text-sm text-gray-600",format:"hh:mm A",parse:"HH:mm"},
-appointment["time"]
-,),),jsx(
-"div",
-{className:"flex items-center gap-2"},
-jsx(LucideScissors,{className:"w-4 h-4 text-gray-500"},)
-,jsx(
-"p",
-{className:"text-sm text-gray-600"},
-appointment["service"]
-,),),jsx(
-"div",
-{className:"flex items-center gap-2"},
-jsx(LucideUserCheck,{className:"w-4 h-4 text-gray-500"},)
-,jsx(
-"p",
-{className:"text-sm text-gray-600"},
-("con "+appointment["barber"])
-,),),jsx(
-"div",
-{className:"flex items-center gap-2"},
-jsx(LucidePhone,{className:"w-4 h-4 text-gray-500"},)
-,jsx(
-"p",
-{className:"text-sm text-gray-600"},
-appointment["phone"]
-,),),),),))),)
   )
 }
 
@@ -701,7 +701,7 @@ jsx(
 "h2",
 {className:"text-2xl font-bold text-gray-800 mb-6 text-center"},
 "Pr\u00f3ximas Citas"
-,),jsx(Fragment_eb99b904cf087aff82907b0720c7744e,{},)
+,),jsx(Fragment_45cf97bb94ac835a5855cb3c56a7ea68,{},)
 ,),),),jsx(
 NextHead,
 {},
