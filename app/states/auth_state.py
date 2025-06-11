@@ -19,7 +19,7 @@ class AuthState(rx.State):
     @rx.event
     def logout(self):
         self.is_logged_in = False
-        return rx.redirect("/login")
+        return rx.redirect("/")
 
     @rx.event
     def check_login(self):
