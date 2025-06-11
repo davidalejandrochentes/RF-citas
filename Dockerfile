@@ -13,7 +13,7 @@ RUN pip install -r requirements.txt
 
 COPY ./ ./
 
-# Inicializar Reflex (esto instalará las dependencias de Node.js)
-RUN reflex init --skip-reflex-init
+# Simplemente ejecutar reflex init sin opciones
+RUN reflex init
 
 CMD ["sh", "entrypoint.sh"]
