@@ -5,13 +5,13 @@ from app.states.auth_state import AuthState
 def login_form() -> rx.Component:
     return rx.el.div(
         rx.el.h2(
-            "Admin Login",
+            "Admin",
             class_name="text-2xl font-bold text-gray-800 mb-6 text-center",
         ),
         rx.el.form(
             rx.el.div(
                 rx.el.label(
-                    "Username",
+                    "Usuario",
                     html_for="username",
                     class_name="block text-sm font-medium text-gray-700 mb-1",
                 ),
@@ -26,7 +26,7 @@ def login_form() -> rx.Component:
             ),
             rx.el.div(
                 rx.el.label(
-                    "Password",
+                    "Contraseña",
                     html_for="password",
                     class_name="block text-sm font-medium text-gray-700 mb-1",
                 ),
