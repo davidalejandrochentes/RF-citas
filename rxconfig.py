@@ -5,5 +5,5 @@ config = rx.Config(
     show_built_with_reflex=True,
     telemetry_enabled=False,
     frontend_port=3000,
-    backend_port=8000,
+    backend_port=3000,
 )
