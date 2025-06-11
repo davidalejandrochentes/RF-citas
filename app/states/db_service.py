@@ -26,9 +26,7 @@ class Service(TypedDict):
 
 
 def get_db_path() -> str:
-    """Returns the path to the database file."""
-    default_path = "app/states/app.db"
-    return os.environ.get('DATABASE_PATH', default_path)
+    return "app/states/app.db"
 
 
 def get_db_connection() -> sqlite3.Connection:
