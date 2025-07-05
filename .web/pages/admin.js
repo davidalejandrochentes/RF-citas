@@ -12,7 +12,46 @@ import { jsx } from "@emotion/react"
 const Moment = dynamic(() => import('react-moment'), { ssr: false });
 
 
-export function Input_8c1f2be919f7b21f0c20a276568a3a28 () {
+export function Form_a2668eeee88a7a6601615b1e5ed83676 () {
+  
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  
+    const handleSubmit_20f7596e805a8b8f90dc89e53fec6451 = useCallback((ev) => {
+        const $form = ev.target
+        ev.preventDefault()
+        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...({  })};
+
+        (((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.add_service", ({ ["form_data"] : form_data }), ({  })))], args, ({  }))))(ev));
+
+        if (true) {
+            $form.reset()
+        }
+    })
+    
+
+
+
+
+  
+  return (
+    jsx(
+"form",
+{onSubmit:handleSubmit_20f7596e805a8b8f90dc89e53fec6451},
+jsx(
+"div",
+{className:"flex flex-col sm:flex-row gap-2 sm:gap-0"},
+jsx("input",{className:"flex-grow px-4 py-2 rounded-lg sm:rounded-r-none border border-gray-300 focus:ring-2 focus:ring-blue-500",name:"name",placeholder:"Nombre del servicio"},)
+,jsx("input",{className:"w-full sm:w-28 px-4 py-2 rounded-lg sm:rounded-none border-y sm:border-y border-x sm:border-x-0 border-gray-300 focus:ring-2 focus:ring-blue-500",name:"price",placeholder:"Precio",type:"number"},)
+,jsx(
+"button",
+{className:"px-6 py-2 bg-blue-600 text-white rounded-lg sm:rounded-l-none font-medium hover:bg-blue-700",type:"submit"},
+"Agregar"
+,),),)
+  )
+}
+
+export function Input_ef448e319296942db4c478d519989941 () {
   
   const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
 
@@ -22,8 +61,27 @@ export function Input_8c1f2be919f7b21f0c20a276568a3a28 () {
 
   
   return (
-    jsx("input",{className:"w-full px-4 py-2 mt-2 rounded-lg border",defaultValue:(JSON.stringify(reflex___state____state__app___states___state____barber_state.editing_item_price)),name:"price",placeholder:"Precio",type:"number"},)
+    jsx("input",{className:"w-full px-4 py-2 mt-4 rounded-lg border",defaultValue:reflex___state____state__app___states___state____barber_state.editing_item_name,name:"name",placeholder:"Nombre del barbero"},)
 
+  )
+}
+
+export function Button_832887a0ad0a4c2b5ef6432dcbf1466d () {
+  
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+  const on_click_0b460a343085608d2862c7ce59f711d4 = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___auth_state____auth_state.logout", ({  }), ({  })))], args, ({  })))), [addEvents, Event])
+
+
+
+  
+  return (
+    jsx(
+"button",
+{className:"px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium transition-colors",onClick:on_click_0b460a343085608d2862c7ce59f711d4},
+"Cerrar Sesi\u00f3n"
+,)
   )
 }
 
@@ -65,7 +123,60 @@ jsx("input",{className:"flex-grow px-4 py-2 rounded-lg sm:rounded-r-none border 
   )
 }
 
-export function Fragment_0eb5f756314f8a0cbf0c2c9af82ec06b () {
+export function Div_817e1f2fdc0b9b1f5485240547647f45 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+
+
+
+  
+  return (
+    jsx(
+"div",
+{className:"flex flex-col gap-2"},
+reflex___state____state__app___states___state____barber_state.services.map((service,index_1394d975d936ed3b)=>(jsx(
+"div",
+{className:"flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg",key:index_1394d975d936ed3b},
+jsx(
+"p",
+{className:"font-medium"},
+(service["name"]+" - $"+service["price"])
+,),jsx(
+"div",
+{className:"flex items-center gap-2"},
+jsx(
+"button",
+{className:"p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full",onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.open_edit_service_dialog", ({ ["service"] : service }), ({  })))], args, ({  }))))},
+jsx(LucideCopy,{className:"w-4 h-4"},)
+,),jsx(
+"button",
+{className:"p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full",onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.delete_service", ({ ["service_id"] : service["id"] }), ({  })))], args, ({  }))))},
+jsx(LucideTrash,{className:"w-4 h-4"},)
+,),),))),)
+  )
+}
+
+export function Input_99c71083c428b1411d2e6664900b9c9a () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+  const on_change_99be9a78ba52403cae52c682bea78780 = useCallback(((_e) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.set_filter_name", ({ ["name"] : _e["target"]["value"] }), ({ ["debounce"] : 300 })))], [_e], ({  })))), [addEvents, Event])
+
+
+
+  
+  return (
+    jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500",defaultValue:reflex___state____state__app___states___state____barber_state.filter_name,onChange:on_change_99be9a78ba52403cae52c682bea78780,placeholder:"Nombre del cliente"},)
+
+  )
+}
+
+export function Fragment_12066f4685b4b7e9be2eff8167230ab4 () {
   
   const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
 
@@ -78,7 +189,7 @@ export function Fragment_0eb5f756314f8a0cbf0c2c9af82ec06b () {
     jsx(
 Fragment,
 {},
-(reflex___state____state__app___states___state____barber_state.show_edit_service_dialog ? (jsx(
+(reflex___state____state__app___states___state____barber_state.show_edit_barber_dialog ? (jsx(
 Fragment,
 {},
 jsx(
@@ -93,8 +204,8 @@ jsx(
 jsx(
 "h3",
 {className:"text-xl font-semibold"},
-"Editar Servicio"
-,),jsx(Form_5939e8b72837965500784d639fbfefa8,{},)
+"Editar Barbero"
+,),jsx(Form_a95dc94aed8459b371cc339b581835fa,{},)
 ,),),jsx(Div_c3ae72ebe77fdb36c48f8edaba7f0aa1,{},)
 ,),)) : (jsx(Fragment,{},)
 )),)
@@ -117,34 +228,7 @@ export function Div_c3ae72ebe77fdb36c48f8edaba7f0aa1 () {
   )
 }
 
-export function Select_d77ec59c4d5bfe5cbebd48830d93f721 () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  const on_change_0649d64e563154f3596fe8470b90f4dc = useCallback(((_e) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.set_filter_service", ({ ["service"] : _e["target"]["value"] }), ({  })))], [_e], ({  })))), [addEvents, Event])
-
-
-
-  
-  return (
-    jsx(
-"select",
-{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 bg-white",defaultValue:reflex___state____state__app___states___state____barber_state.filter_service,key:("filter-service-"+reflex___state____state__app___states___state____barber_state.filter_service),onChange:on_change_0649d64e563154f3596fe8470b90f4dc},
-jsx(
-"option",
-{value:""},
-"Todos los servicios"
-,),reflex___state____state__app___states___state____barber_state.services.map((service,index_3da064d479bee6aa)=>(jsx(
-"option",
-{key:index_3da064d479bee6aa,value:service["name"]},
-service["name"]
-,))),)
-  )
-}
-
-export function Div_2242b9ae24b56413e655a368444fb405 () {
+export function Div_710ed77eaba3cfede725bb5f78311f61 () {
   
   const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
   const reflex___state____state__app___states___auth_state____auth_state = useContext(StateContexts.reflex___state____state__app___states___auth_state____auth_state)
@@ -159,9 +243,9 @@ export function Div_2242b9ae24b56413e655a368444fb405 () {
     jsx(
 "div",
 {className:"flex flex-col gap-6"},
-reflex___state____state__app___states___state____barber_state.filtered_appointments.map((appointment,index_03d02ec4fbbd1cd4)=>(jsx(
+reflex___state____state__app___states___state____barber_state.filtered_appointments.map((appointment,index_18598794a0fe2b93)=>(jsx(
 "div",
-{className:"bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300",key:index_03d02ec4fbbd1cd4},
+{className:"bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300",key:index_18598794a0fe2b93},
 jsx(
 "div",
 {},
@@ -234,75 +318,105 @@ appointment["phone"]
   )
 }
 
-export function Button_832887a0ad0a4c2b5ef6432dcbf1466d () {
+export function Div_8c59e30c8b82f550212241817634dfa8 () {
   
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
 
-  const on_click_0b460a343085608d2862c7ce59f711d4 = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___auth_state____auth_state.logout", ({  }), ({  })))], args, ({  })))), [addEvents, Event])
 
 
 
   
   return (
     jsx(
+"div",
+{className:"flex flex-col gap-2"},
+reflex___state____state__app___states___state____barber_state.barbers.map((barber,index_6670cbdf71ee9fbc)=>(jsx(
+"div",
+{className:"flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg",key:index_6670cbdf71ee9fbc},
+jsx(
+"p",
+{className:"font-medium"},
+barber["name"]
+,),jsx(
+"div",
+{className:"flex items-center gap-2"},
+jsx(
 "button",
-{className:"px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium transition-colors",onClick:on_click_0b460a343085608d2862c7ce59f711d4},
-"Cerrar Sesi\u00f3n"
-,)
+{className:"p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full",onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.open_edit_barber_dialog", ({ ["barber"] : barber }), ({  })))], args, ({  }))))},
+jsx(LucideCopy,{className:"w-4 h-4"},)
+,),jsx(
+"button",
+{className:"p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full",onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.delete_barber", ({ ["barber_id"] : barber["id"] }), ({  })))], args, ({  }))))},
+jsx(LucideTrash,{className:"w-4 h-4"},)
+,),),))),)
   )
 }
 
-export function Input_cfd6b755dff351b98c16c4c76f5b68d7 () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  const on_change_a00271367302bfd43fc743b869c93862 = useCallback(((_e) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.set_filter_phone", ({ ["phone"] : _e["target"]["value"] }), ({ ["debounce"] : 300 })))], [_e], ({  })))), [addEvents, Event])
-
-
-
-  
-  return (
-    jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500",defaultValue:reflex___state____state__app___states___state____barber_state.filter_phone,onChange:on_change_a00271367302bfd43fc743b869c93862,placeholder:"Tel\u00e9fono",type:"tel"},)
-
-  )
-}
-
-export function Input_ba98916629164daf1969aaa95ee042ca () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  const on_change_6e6beed521f8cd369a1627becaa5e397 = useCallback(((_e) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.set_filter_date", ({ ["date"] : _e["target"]["value"] }), ({  })))], [_e], ({  })))), [addEvents, Event])
-
-
-
-  
-  return (
-    jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500",defaultValue:reflex___state____state__app___states___state____barber_state.filter_date,onChange:on_change_6e6beed521f8cd369a1627becaa5e397,type:"date"},)
-
-  )
-}
-
-export function Button_e9103df4ff84eeb5c28bb028a5a2ed7c () {
+export function Form_a95dc94aed8459b371cc339b581835fa () {
   
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
+  
+    const handleSubmit_16f3997b4b72faed75ccdec8402eeda0 = useCallback((ev) => {
+        const $form = ev.target
+        ev.preventDefault()
+        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...({  })};
 
-  const on_click_0ae27cb837d943d571c88dfa1388075b = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.close_edit_dialogs", ({  }), ({  })))], args, ({  })))), [addEvents, Event])
+        (((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.save_barber_edit", ({ ["form_data"] : form_data }), ({  })))], args, ({  }))))(ev));
+
+        if (false) {
+            $form.reset()
+        }
+    })
+    
+
 
 
 
   
   return (
     jsx(
+"form",
+{onSubmit:handleSubmit_16f3997b4b72faed75ccdec8402eeda0},
+jsx(Input_ef448e319296942db4c478d519989941,{},)
+,jsx(
+"div",
+{className:"flex justify-end gap-4 mt-4"},
+jsx(Button_e9103df4ff84eeb5c28bb028a5a2ed7c,{},)
+,jsx(
 "button",
-{className:"px-4 py-2 bg-gray-200 rounded-lg",onClick:on_click_0ae27cb837d943d571c88dfa1388075b,type:"button"},
-"Cancelar"
-,)
+{className:"px-4 py-2 bg-blue-600 text-white rounded-lg",type:"submit"},
+"Guardar"
+,),),)
+  )
+}
+
+export function Select_b5e509d5c3e60fe47ec790dc15587cac () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+  const on_change_0649d64e563154f3596fe8470b90f4dc = useCallback(((_e) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.set_filter_service", ({ ["service"] : _e["target"]["value"] }), ({  })))], [_e], ({  })))), [addEvents, Event])
+
+
+
+  
+  return (
+    jsx(
+"select",
+{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 bg-white",defaultValue:reflex___state____state__app___states___state____barber_state.filter_service,key:("filter-service-"+reflex___state____state__app___states___state____barber_state.filter_service),onChange:on_change_0649d64e563154f3596fe8470b90f4dc},
+jsx(
+"option",
+{value:""},
+"Todos los servicios"
+,),reflex___state____state__app___states___state____barber_state.services.map((service,index_51f98ff104bc203a)=>(jsx(
+"option",
+{key:index_51f98ff104bc203a,value:service["name"]},
+service["name"]
+,))),)
   )
 }
 
@@ -346,39 +460,7 @@ jsx(Button_e9103df4ff84eeb5c28bb028a5a2ed7c,{},)
   )
 }
 
-export function Input_2b4787974d58641f9bc560c64727dc47 () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx("input",{className:"w-full px-4 py-2 mt-4 rounded-lg border",defaultValue:reflex___state____state__app___states___state____barber_state.editing_item_name,name:"name",placeholder:"Nombre del servicio"},)
-
-  )
-}
-
-export function Input_99c71083c428b1411d2e6664900b9c9a () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  const on_change_99be9a78ba52403cae52c682bea78780 = useCallback(((_e) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.set_filter_name", ({ ["name"] : _e["target"]["value"] }), ({ ["debounce"] : 300 })))], [_e], ({  })))), [addEvents, Event])
-
-
-
-  
-  return (
-    jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500",defaultValue:reflex___state____state__app___states___state____barber_state.filter_name,onChange:on_change_99be9a78ba52403cae52c682bea78780,placeholder:"Nombre del cliente"},)
-
-  )
-}
-
-export function Fragment_12066f4685b4b7e9be2eff8167230ab4 () {
+export function Fragment_0eb5f756314f8a0cbf0c2c9af82ec06b () {
   
   const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
 
@@ -391,7 +473,7 @@ export function Fragment_12066f4685b4b7e9be2eff8167230ab4 () {
     jsx(
 Fragment,
 {},
-(reflex___state____state__app___states___state____barber_state.show_edit_barber_dialog ? (jsx(
+(reflex___state____state__app___states___state____barber_state.show_edit_service_dialog ? (jsx(
 Fragment,
 {},
 jsx(
@@ -406,89 +488,30 @@ jsx(
 jsx(
 "h3",
 {className:"text-xl font-semibold"},
-"Editar Barbero"
-,),jsx(Form_a95dc94aed8459b371cc339b581835fa,{},)
+"Editar Servicio"
+,),jsx(Form_5939e8b72837965500784d639fbfefa8,{},)
 ,),),jsx(Div_c3ae72ebe77fdb36c48f8edaba7f0aa1,{},)
 ,),)) : (jsx(Fragment,{},)
 )),)
   )
 }
 
-export function Form_a95dc94aed8459b371cc339b581835fa () {
+export function Button_e9103df4ff84eeb5c28bb028a5a2ed7c () {
   
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
-  
-    const handleSubmit_16f3997b4b72faed75ccdec8402eeda0 = useCallback((ev) => {
-        const $form = ev.target
-        ev.preventDefault()
-        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...({  })};
 
-        (((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.save_barber_edit", ({ ["form_data"] : form_data }), ({  })))], args, ({  }))))(ev));
-
-        if (false) {
-            $form.reset()
-        }
-    })
-    
-
+  const on_click_0ae27cb837d943d571c88dfa1388075b = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.close_edit_dialogs", ({  }), ({  })))], args, ({  })))), [addEvents, Event])
 
 
 
   
   return (
     jsx(
-"form",
-{onSubmit:handleSubmit_16f3997b4b72faed75ccdec8402eeda0},
-jsx(Input_ef448e319296942db4c478d519989941,{},)
-,jsx(
-"div",
-{className:"flex justify-end gap-4 mt-4"},
-jsx(Button_e9103df4ff84eeb5c28bb028a5a2ed7c,{},)
-,jsx(
 "button",
-{className:"px-4 py-2 bg-blue-600 text-white rounded-lg",type:"submit"},
-"Guardar"
-,),),)
-  )
-}
-
-export function Form_a2668eeee88a7a6601615b1e5ed83676 () {
-  
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  
-    const handleSubmit_20f7596e805a8b8f90dc89e53fec6451 = useCallback((ev) => {
-        const $form = ev.target
-        ev.preventDefault()
-        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...({  })};
-
-        (((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.add_service", ({ ["form_data"] : form_data }), ({  })))], args, ({  }))))(ev));
-
-        if (true) {
-            $form.reset()
-        }
-    })
-    
-
-
-
-
-  
-  return (
-    jsx(
-"form",
-{onSubmit:handleSubmit_20f7596e805a8b8f90dc89e53fec6451},
-jsx(
-"div",
-{className:"flex flex-col sm:flex-row gap-2 sm:gap-0"},
-jsx("input",{className:"flex-grow px-4 py-2 rounded-lg sm:rounded-r-none border border-gray-300 focus:ring-2 focus:ring-blue-500",name:"name",placeholder:"Nombre del servicio"},)
-,jsx("input",{className:"w-full sm:w-28 px-4 py-2 rounded-lg sm:rounded-none border-y sm:border-y border-x sm:border-x-0 border-gray-300 focus:ring-2 focus:ring-blue-500",name:"price",placeholder:"Precio",type:"number"},)
-,jsx(
-"button",
-{className:"px-6 py-2 bg-blue-600 text-white rounded-lg sm:rounded-l-none font-medium hover:bg-blue-700",type:"submit"},
-"Agregar"
-,),),)
+{className:"px-4 py-2 bg-gray-200 rounded-lg",onClick:on_click_0ae27cb837d943d571c88dfa1388075b,type:"button"},
+"Cancelar"
+,)
   )
 }
 
@@ -511,7 +534,7 @@ export function Button_d4bc67048442ecbfbc79d48aae68ccc2 () {
   )
 }
 
-export function Fragment_45cf97bb94ac835a5855cb3c56a7ea68 () {
+export function Fragment_acd8bc1e26a3c49255674e85a4423bf6 () {
   
   const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
 
@@ -527,7 +550,7 @@ Fragment,
 ((reflex___state____state__app___states___state____barber_state.filtered_appointments.length > 0) ? (jsx(
 Fragment,
 {},
-jsx(Div_2242b9ae24b56413e655a368444fb405,{},)
+jsx(Div_710ed77eaba3cfede725bb5f78311f61,{},)
 ,)) : (jsx(
 Fragment,
 {},
@@ -543,90 +566,67 @@ jsx(LucideCalendarOff,{className:"w-16 h-16 text-gray-300"},)
   )
 }
 
-export function Input_ef448e319296942db4c478d519989941 () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx("input",{className:"w-full px-4 py-2 mt-4 rounded-lg border",defaultValue:reflex___state____state__app___states___state____barber_state.editing_item_name,name:"name",placeholder:"Nombre del barbero"},)
-
-  )
-}
-
-export function Div_2bc3fc4b2ab170c8619ae448ce7e6c11 () {
+export function Input_ba98916629164daf1969aaa95ee042ca () {
   
   const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
 
+  const on_change_6e6beed521f8cd369a1627becaa5e397 = useCallback(((_e) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.set_filter_date", ({ ["date"] : _e["target"]["value"] }), ({  })))], [_e], ({  })))), [addEvents, Event])
 
 
 
   
   return (
-    jsx(
-"div",
-{className:"flex flex-col gap-2"},
-reflex___state____state__app___states___state____barber_state.barbers.map((barber,index_fe4f0bd6994ee067)=>(jsx(
-"div",
-{className:"flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg",key:index_fe4f0bd6994ee067},
-jsx(
-"p",
-{className:"font-medium"},
-barber["name"]
-,),jsx(
-"div",
-{className:"flex items-center gap-2"},
-jsx(
-"button",
-{className:"p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full",onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.open_edit_barber_dialog", ({ ["barber"] : barber }), ({  })))], args, ({  }))))},
-jsx(LucideCopy,{className:"w-4 h-4"},)
-,),jsx(
-"button",
-{className:"p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full",onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.delete_barber", ({ ["barber_id"] : barber["id"] }), ({  })))], args, ({  }))))},
-jsx(LucideTrash,{className:"w-4 h-4"},)
-,),),))),)
+    jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500",defaultValue:reflex___state____state__app___states___state____barber_state.filter_date,onChange:on_change_6e6beed521f8cd369a1627becaa5e397,type:"date"},)
+
   )
 }
 
-export function Div_94213494c18176f5ba10f41d199b885b () {
+export function Input_8c1f2be919f7b21f0c20a276568a3a28 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx("input",{className:"w-full px-4 py-2 mt-2 rounded-lg border",defaultValue:(JSON.stringify(reflex___state____state__app___states___state____barber_state.editing_item_price)),name:"price",placeholder:"Precio",type:"number"},)
+
+  )
+}
+
+export function Input_2b4787974d58641f9bc560c64727dc47 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx("input",{className:"w-full px-4 py-2 mt-4 rounded-lg border",defaultValue:reflex___state____state__app___states___state____barber_state.editing_item_name,name:"name",placeholder:"Nombre del servicio"},)
+
+  )
+}
+
+export function Input_cfd6b755dff351b98c16c4c76f5b68d7 () {
   
   const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
   const [addEvents, connectErrors] = useContext(EventLoopContext);
 
 
+  const on_change_a00271367302bfd43fc743b869c93862 = useCallback(((_e) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.set_filter_phone", ({ ["phone"] : _e["target"]["value"] }), ({ ["debounce"] : 300 })))], [_e], ({  })))), [addEvents, Event])
 
 
 
   
   return (
-    jsx(
-"div",
-{className:"flex flex-col gap-2"},
-reflex___state____state__app___states___state____barber_state.services.map((service,index_82b1716683fc022d)=>(jsx(
-"div",
-{className:"flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg",key:index_82b1716683fc022d},
-jsx(
-"p",
-{className:"font-medium"},
-(service["name"]+" - $"+service["price"])
-,),jsx(
-"div",
-{className:"flex items-center gap-2"},
-jsx(
-"button",
-{className:"p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full",onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.open_edit_service_dialog", ({ ["service"] : service }), ({  })))], args, ({  }))))},
-jsx(LucideCopy,{className:"w-4 h-4"},)
-,),jsx(
-"button",
-{className:"p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full",onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.delete_service", ({ ["service_id"] : service["id"] }), ({  })))], args, ({  }))))},
-jsx(LucideTrash,{className:"w-4 h-4"},)
-,),),))),)
+    jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500",defaultValue:reflex___state____state__app___states___state____barber_state.filter_phone,onChange:on_change_a00271367302bfd43fc743b869c93862,placeholder:"Tel\u00e9fono",type:"tel"},)
+
   )
 }
 
@@ -668,7 +668,7 @@ jsx(
 "Gestionar Barberos"
 ,),jsx(Form_fe525aa00b3be4dc0d1ba21d1cfc0407,{},)
 ,jsx("div",{className:"my-6 border-t border-gray-200"},)
-,jsx(Div_2bc3fc4b2ab170c8619ae448ce7e6c11,{},)
+,jsx(Div_8c59e30c8b82f550212241817634dfa8,{},)
 ,),jsx(
 "div",
 {className:"w-full bg-white p-6 rounded-xl shadow-md border border-gray-100"},
@@ -678,7 +678,7 @@ jsx(
 "Gestionar Servicios"
 ,),jsx(Form_a2668eeee88a7a6601615b1e5ed83676,{},)
 ,jsx("div",{className:"my-6 border-t border-gray-200"},)
-,jsx(Div_94213494c18176f5ba10f41d199b885b,{},)
+,jsx(Div_817e1f2fdc0b9b1f5485240547647f45,{},)
 ,),),jsx(
 "div",
 {className:"w-full bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-8"},
@@ -692,7 +692,7 @@ jsx(
 jsx(Input_99c71083c428b1411d2e6664900b9c9a,{},)
 ,jsx(Input_cfd6b755dff351b98c16c4c76f5b68d7,{},)
 ,jsx(Input_ba98916629164daf1969aaa95ee042ca,{},)
-,jsx(Select_d77ec59c4d5bfe5cbebd48830d93f721,{},)
+,jsx(Select_b5e509d5c3e60fe47ec790dc15587cac,{},)
 ,),jsx(Button_d4bc67048442ecbfbc79d48aae68ccc2,{},)
 ,),jsx(
 "div",
@@ -701,7 +701,7 @@ jsx(
 "h2",
 {className:"text-2xl font-bold text-gray-800 mb-6 text-center"},
 "Pr\u00f3ximas Citas"
-,),jsx(Fragment_45cf97bb94ac835a5855cb3c56a7ea68,{},)
+,),jsx(Fragment_acd8bc1e26a3c49255674e85a4423bf6,{},)
 ,),),),jsx(
 NextHead,
 {},
