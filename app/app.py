@@ -34,14 +34,14 @@ def index() -> rx.Component:
             appointment_form(),
             rx.el.div(
                 rx.el.p(
-                    "Para cancelaciones, contactar a 55499507",
+                    "Para cancelaciones, contactar a 54214040",
                     class_name="text-sm text-gray-500",
                 ),
-                rx.el.a(
-                    "Admin Login",
-                    href="/login",
-                    class_name="text-sm text-gray-500 hover:text-blue-600 underline",
-                ),
+                #rx.el.a(
+                #    "Admin Login",
+                #    href="/login",
+                #    class_name="text-sm text-gray-500 hover:text-blue-600 underline",
+                #),
                 class_name="w-full max-w-3xl mt-8 text-center",
             ),
             class_name="container mx-auto flex flex-col items-center p-4 md:p-8",

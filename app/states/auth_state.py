@@ -8,7 +8,7 @@ class AuthState(rx.State):
     def login(self, form_data: dict):
         username = form_data.get("username", "")
         password = form_data.get("password", "")
-        if username == "admin" and password == "admin":
+        if username == "david" and password == "123456":
             self.is_logged_in = True
             return rx.redirect("/admin")
         return rx.toast(
