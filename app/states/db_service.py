@@ -250,3 +250,12 @@ def set_availability_for_barber(
         print(f"Database error: {e}")
     finally:
         conn.close()
+
+def get_all_available_dates() -> list[str]:
+    """Fetches all unique dates that have at least one availability slot."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT DISTINCT date FROM barber_availability")
+    rows = cursor.fetchall()
+    conn.close()
+    return [row["date"] for row in rows]

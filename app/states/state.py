@@ -20,6 +20,7 @@ from app.states.db_service import (
     delete_service_db,
     get_availability_for_barber,
     set_availability_for_barber,
+    get_all_available_dates,
 )
 
 
@@ -92,12 +93,16 @@ class BarberState(rx.State):
     availability_selected_barber_id: str = ""
     availability_selected_date: str = ""
     availability_selected_times: list[str] = []
+    
+    # All dates with at least one available slot
+    globally_available_dates: list[str] = []
 
     @rx.event
     def load_data(self):
         self.appointments = get_all_appointments()
         self.barbers = get_all_barbers()
         self.services = get_all_services()
+        self.globally_available_dates = get_all_available_dates()
         if self.barbers:
             # Ensure a barber is selected for availability if not already
             if not self.availability_selected_barber_id:
@@ -361,6 +366,8 @@ class BarberState(rx.State):
             self.availability_selected_date,
             self.availability_selected_times,
         )
+        # Refresh the globally available dates after saving
+        self.globally_available_dates = get_all_available_dates()
         return rx.toast("Disponibilidad guardada con éxito.", duration=3000)
 
     # --- Computed Vars ---
@@ -441,7 +448,12 @@ class BarberState(rx.State):
                     day,
                 )
                 date_str = date_obj.strftime("%Y-%m-%d")
-                is_disabled = date_obj < today
+                
+                # A day is disabled if it's in the past OR if it's not in the list of globally available dates.
+                is_past = date_obj < today
+                is_available = date_str in self.globally_available_dates
+                is_disabled = is_past or not is_available
+
                 week_data.append(
                     {
                         "day": day,
