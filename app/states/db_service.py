@@ -43,13 +43,46 @@ def init_db():
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
-        "\n        CREATE TABLE IF NOT EXISTS appointments (\n            id TEXT PRIMARY KEY,\n            name TEXT NOT NULL,\n            phone TEXT NOT NULL,\n            date TEXT NOT NULL,\n            time TEXT NOT NULL,\n            service TEXT NOT NULL,\n            barber TEXT NOT NULL\n        )\n        "
+        """
+        CREATE TABLE IF NOT EXISTS appointments (
+            id TEXT PRIMARY KEY,
+            name TEXT NOT NULL,
+            phone TEXT NOT NULL,
+            date TEXT NOT NULL,
+            time TEXT NOT NULL,
+            service TEXT NOT NULL,
+            barber TEXT NOT NULL
+        )
+        """
     )
     cursor.execute(
-        "\n        CREATE TABLE IF NOT EXISTS barbers (\n            id TEXT PRIMARY KEY,\n            name TEXT NOT NULL UNIQUE\n        )\n        "
+        """
+        CREATE TABLE IF NOT EXISTS barbers (
+            id TEXT PRIMARY KEY,
+            name TEXT NOT NULL UNIQUE
+        )
+        """
     )
     cursor.execute(
-        "\n        CREATE TABLE IF NOT EXISTS services (\n            id TEXT PRIMARY KEY,\n            name TEXT NOT NULL UNIQUE,\n            price INTEGER NOT NULL\n        )\n        "
+        """
+        CREATE TABLE IF NOT EXISTS services (
+            id TEXT PRIMARY KEY,
+            name TEXT NOT NULL UNIQUE,
+            price INTEGER NOT NULL
+        )
+        """
+    )
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS barber_availability (
+            id TEXT PRIMARY KEY,
+            barber_id TEXT NOT NULL,
+            date TEXT NOT NULL,
+            time TEXT NOT NULL,
+            FOREIGN KEY (barber_id) REFERENCES barbers (id) ON DELETE CASCADE,
+            UNIQUE (barber_id, date, time)
+        )
+        """
     )
     conn.commit()
     conn.close()
@@ -176,3 +209,44 @@ def delete_service_db(service_id: str):
     )
     conn.commit()
     conn.close()
+
+
+def get_availability_for_barber(
+    barber_id: str, date: str
+) -> list[str]:
+    """Fetches the available time slots for a specific barber on a specific date."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT time FROM barber_availability WHERE barber_id = ? AND date = ? ORDER BY time",
+        (barber_id, date),
+    )
+    rows = cursor.fetchall()
+    conn.close()
+    return [row["time"] for row in rows]
+
+
+def set_availability_for_barber(
+    barber_id: str, date: str, times: list[str]
+):
+    """Sets the available time slots for a barber on a date, overwriting existing ones."""
+    import uuid
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("BEGIN")
+        cursor.execute(
+            "DELETE FROM barber_availability WHERE barber_id = ? AND date = ?",
+            (barber_id, date),
+        )
+        for time in times:
+            cursor.execute(
+                "INSERT INTO barber_availability (id, barber_id, date, time) VALUES (?, ?, ?, ?)",
+                (str(uuid.uuid4()), barber_id, date, time),
+            )
+        conn.commit()
+    except Exception as e:
+        conn.rollback()
+        print(f"Database error: {e}")
+    finally:
+        conn.close()

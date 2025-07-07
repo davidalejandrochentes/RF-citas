@@ -18,6 +18,8 @@ from app.states.db_service import (
     add_service_db,
     update_service_db,
     delete_service_db,
+    get_availability_for_barber,
+    set_availability_for_barber,
 )
 
 
@@ -86,11 +88,25 @@ class BarberState(rx.State):
     filter_service: str = ""
     filter_date: str = ""
 
+    # State for availability management
+    availability_selected_barber_id: str = ""
+    availability_selected_date: str = ""
+    availability_selected_times: list[str] = []
+
     @rx.event
     def load_data(self):
         self.appointments = get_all_appointments()
         self.barbers = get_all_barbers()
         self.services = get_all_services()
+        if self.barbers:
+            # Ensure a barber is selected for availability if not already
+            if not self.availability_selected_barber_id:
+                self.availability_selected_barber_id = self.barbers[0]["id"]
+            # Load availability for the selected barber and date
+            if self.availability_selected_date:
+                self.availability_selected_times = get_availability_for_barber(
+                    self.availability_selected_barber_id, self.availability_selected_date
+                )
 
     @rx.event
     def add_barber(self, form_data: dict):
@@ -307,6 +323,48 @@ class BarberState(rx.State):
         self.filter_service = ""
         self.filter_date = ""
 
+    # --- Availability Management Events ---
+
+    @rx.event
+    def handle_availability_barber_change(self, barber_id: str):
+        self.availability_selected_barber_id = barber_id
+        if self.availability_selected_date:
+            self.availability_selected_times = get_availability_for_barber(
+                barber_id, self.availability_selected_date
+            )
+        else:
+            self.availability_selected_times = []
+
+    @rx.event
+    def handle_availability_date_change(self, date_str: str):
+        self.availability_selected_date = date_str
+        if self.availability_selected_barber_id:
+            self.availability_selected_times = get_availability_for_barber(
+                self.availability_selected_barber_id, date_str
+            )
+
+    @rx.event
+    def toggle_availability_time(self, time: str):
+        if time in self.availability_selected_times:
+            self.availability_selected_times.remove(time)
+        else:
+            self.availability_selected_times.append(time)
+            self.availability_selected_times.sort()
+
+    @rx.event
+    def save_availability(self):
+        if not self.availability_selected_barber_id or not self.availability_selected_date:
+            return rx.toast("Seleccione un barbero y una fecha.", duration=3000)
+        
+        set_availability_for_barber(
+            self.availability_selected_barber_id,
+            self.availability_selected_date,
+            self.availability_selected_times,
+        )
+        return rx.toast("Disponibilidad guardada con éxito.", duration=3000)
+
+    # --- Computed Vars ---
+
     @rx.var
     def barber_names(self) -> list[str]:
         return [barber["name"] for barber in self.barbers]
@@ -402,42 +460,46 @@ class BarberState(rx.State):
     def available_times_for_selected_date_and_barber(
         self,
     ) -> list[str]:
-        if (
-            not self.selected_date
-            or not self.selected_barber
-        ):
+        if not self.selected_date or not self.selected_barber:
             return []
+
+        # Find the barber's ID from their name
+        barber_id = None
+        for b in self.barbers:
+            if b["name"] == self.selected_barber:
+                barber_id = b["id"]
+                break
+        if not barber_id:
+            return []
+
         try:
             selected_date_obj = datetime.datetime.strptime(
                 self.selected_date, "%Y-%m-%d"
             ).date()
         except ValueError:
             return []
+
+        # 1. Get explicitly available times from the database
+        available_times = get_availability_for_barber(barber_id, self.selected_date)
+        
+        # 2. Get times that are already booked
         booked_times = {
             app["time"]
             for app in self.appointments
             if app["date"] == self.selected_date
             and app["barber"] == self.selected_barber
         }
+
+        # 3. Filter out booked times
+        final_times = [t for t in available_times if t not in booked_times]
+
+        # 4. If it's today, filter out past times
         if selected_date_obj == datetime.date.today():
             now = datetime.datetime.now().time()
-            future_times = [
+            final_times = [
                 t
-                for t in self.all_possible_times
-                if datetime.datetime.strptime(
-                    t, "%H:%M"
-                ).time()
-                > now
+                for t in final_times
+                if datetime.datetime.strptime(t, "%H:%M").time() > now
             ]
-            return [
-                time
-                for time in future_times
-                if time not in booked_times
-            ]
-        elif selected_date_obj < datetime.date.today():
-            return []
-        return [
-            time
-            for time in self.all_possible_times
-            if time not in booked_times
-        ]
+        
+        return final_times
