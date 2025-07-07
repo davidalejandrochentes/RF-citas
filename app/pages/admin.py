@@ -251,14 +251,19 @@ def _availability_calendar_day(day_data: dict) -> rx.Component:
             on_click=lambda: BarberState.handle_availability_date_change(
                 day_data["date_str"]
             ),
+            disabled=day_data["is_disabled"],
             type="button",
             class_name=rx.cond(
-                day_data["date_str"] == BarberState.availability_selected_date,
-                "p-2 rounded-full bg-blue-600 text-white w-10 h-10 flex items-center justify-center font-bold shadow-lg",
+                day_data["is_disabled"],
+                "p-2 rounded-full w-10 h-10 flex items-center justify-center text-gray-300 cursor-not-allowed",
                 rx.cond(
-                    day_data["is_today"],
-                    "p-2 rounded-full bg-blue-100 text-blue-600 w-10 h-10 flex items-center justify-center font-semibold",
-                    "p-2 rounded-full hover:bg-gray-100 w-10 h-10 flex items-center justify-center transition-colors",
+                    day_data["is_selected"],
+                    "p-2 rounded-full bg-blue-600 text-white w-10 h-10 flex items-center justify-center font-bold shadow-lg",
+                    rx.cond(
+                        day_data["is_today"],
+                        "p-2 rounded-full bg-blue-100 text-blue-600 w-10 h-10 flex items-center justify-center font-semibold",
+                        "p-2 rounded-full hover:bg-gray-100 w-10 h-10 flex items-center justify-center transition-colors",
+                    ),
                 ),
             ),
         ),
@@ -321,7 +326,7 @@ def availability_manager() -> rx.Component:
                 ),
                 rx.el.div(
                     rx.foreach(
-                        BarberState.calendar_weeks,
+                        BarberState.admin_calendar_weeks,
                         lambda week: rx.el.div(
                             rx.foreach(week, _availability_calendar_day),
                             class_name="grid grid-cols-7 gap-2",

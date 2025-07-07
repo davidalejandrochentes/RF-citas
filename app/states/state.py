@@ -469,6 +469,45 @@ class BarberState(rx.State):
         return weeks
 
     @rx.var
+    def admin_calendar_weeks(self) -> list[list[dict]]:
+        """Generates calendar weeks specifically for the admin availability panel."""
+        cal = calendar.Calendar(firstweekday=0)
+        month_days = cal.monthdayscalendar(
+            self.display_month_date.year,
+            self.display_month_date.month,
+        )
+        weeks = []
+        today = datetime.date.today()
+        for week in month_days:
+            week_data = []
+            for day in week:
+                if day == 0:
+                    week_data.append({"is_in_month": False})
+                    continue
+                date_obj = datetime.date(
+                    self.display_month_date.year,
+                    self.display_month_date.month,
+                    day,
+                )
+                date_str = date_obj.strftime("%Y-%m-%d")
+                
+                # For the admin panel, a day is only disabled if it's in the past.
+                is_disabled = date_obj < today
+
+                week_data.append(
+                    {
+                        "day": day,
+                        "is_in_month": True,
+                        "is_today": date_obj == today,
+                        "is_selected": date_str == self.availability_selected_date,
+                        "date_str": date_str,
+                        "is_disabled": is_disabled,
+                    }
+                )
+            weeks.append(week_data)
+        return weeks
+
+    @rx.var
     def available_times_for_selected_date_and_barber(
         self,
     ) -> list[str]:
