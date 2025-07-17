@@ -151,7 +151,7 @@ def barber_manager() -> rx.Component:
                     rx.el.div(
                         rx.el.button(
                             rx.icon(
-                                "copy", class_name="w-4 h-4"
+                                "pencil", class_name="w-4 h-4"
                             ),
                             on_click=lambda: BarberState.open_edit_barber_dialog(
                                 barber
@@ -215,7 +215,7 @@ def service_manager() -> rx.Component:
                     rx.el.div(
                         rx.el.button(
                             rx.icon(
-                                "copy", class_name="w-4 h-4"
+                                "pencil", class_name="w-4 h-4"
                             ),
                             on_click=lambda: BarberState.open_edit_service_dialog(
                                 service
