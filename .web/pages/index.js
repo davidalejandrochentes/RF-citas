@@ -12,537 +12,6 @@ import { jsx } from "@emotion/react"
 const Moment = dynamic(() => import('react-moment'), { ssr: false });
 
 
-export function Select_3a42851bd7115a010a083ac4b586d4c8 () {
-  
-  const ref_service = useRef(null); refs["ref_service"] = ref_service;
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-"select",
-{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors appearance-none bg-white",id:"service",name:"service",ref:ref_service,required:true},
-reflex___state____state__app___states___state____barber_state.services.map((service,index_3e480e91dec77765)=>(jsx(
-"option",
-{key:index_3e480e91dec77765,value:service["name"]},
-(service["name"]+" - $"+service["price"])
-,))),)
-  )
-}
-
-export function H4_e9256af9d5b93f9ab19e8cc332d5511a () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-"h4",
-{className:"font-semibold mb-4 text-center text-gray-700"},
-("Seleccione un barbero para "+reflex___state____state__app___states___state____barber_state.selected_date)
-,)
-  )
-}
-
-export function Button_769511a1f448185b2b51f0ac8ce0dbdb () {
-  
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  const on_click_dcc1792dd4de10b5282c28ad24a9a3f5 = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.cancel_confirmation", ({  }), ({  })))], args, ({  })))), [addEvents, Event])
-
-
-
-  
-  return (
-    jsx(
-"button",
-{className:"w-full sm:w-auto px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-medium transition-colors",onClick:on_click_dcc1792dd4de10b5282c28ad24a9a3f5,type:"button"},
-"Cancelar"
-,)
-  )
-}
-
-export function Fragment_f4f2086733c36ca48e829854ecddd010 () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-  const ref_name = useRef(null); refs["ref_name"] = ref_name;
-  const ref_phone = useRef(null); refs["ref_phone"] = ref_phone;
-
-
-
-
-
-  
-  return (
-    jsx(
-Fragment,
-{},
-(!((reflex___state____state__app___states___state____barber_state.selected_time === "")) ? (jsx(
-Fragment,
-{},
-jsx(
-"div",
-{className:"flex flex-col items-center gap-4 w-full"},
-jsx("div",{className:"w-full border-t border-gray-200 my-6"},)
-,jsx(
-"div",
-{className:"w-full"},
-jsx(
-"label",
-{className:"block text-sm font-medium text-gray-700 mb-1",htmlFor:"name"},
-"Nombre Completo"
-,),jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors",id:"name",name:"name",placeholder:"Ej: Juan P\u00e9rez",ref:ref_name,required:true,type:"text"},)
-,),jsx(
-"div",
-{className:"w-full"},
-jsx(
-"label",
-{className:"block text-sm font-medium text-gray-700 mb-1",htmlFor:"phone"},
-"N\u00famero de Tel\u00e9fono"
-,),jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors",id:"phone",name:"phone",placeholder:"Ej: 55 1234 5678",ref:ref_phone,required:true,type:"tel"},)
-,),jsx(
-"div",
-{className:"w-full"},
-jsx(
-"label",
-{className:"block text-sm font-medium text-gray-700 mb-1",htmlFor:"service"},
-"Servicio"
-,),jsx(Select_3a42851bd7115a010a083ac4b586d4c8,{},)
-,),jsx(
-"button",
-{className:"w-full mt-4 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200 shadow-md hover:shadow-lg",type:"submit"},
-"Agendar Cita"
-,),),)) : (jsx(
-Fragment,
-{},
-jsx("div",{},)
-,))),)
-  )
-}
-
-export function Fragment_8eec24dbe8bcd2d895159f6e8e98efb3 () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-Fragment,
-{},
-((!((reflex___state____state__app___states___state____barber_state.selected_date === "")) && (reflex___state____state__app___states___state____barber_state.barbers.length > 0)) ? (jsx(
-Fragment,
-{},
-jsx(
-"div",
-{className:"w-full mt-6"},
-jsx(H4_e9256af9d5b93f9ab19e8cc332d5511a,{},)
-,jsx(Select_07b9e00c14cb84a51a0531926e9150fc,{},)
-,),)) : (jsx(Fragment,{},)
-)),)
-  )
-}
-
-export function Button_70a48297308ae33ca05188f23feac1ce () {
-  
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  const on_click_bbd51f1c91224877654c5e8e3e62e38f = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.change_month", ({ ["delta"] : -1 }), ({  })))], args, ({  })))), [addEvents, Event])
-
-
-
-  
-  return (
-    jsx(
-"button",
-{className:"p-2 rounded-md hover:bg-gray-100",onClick:on_click_bbd51f1c91224877654c5e8e3e62e38f,type:"button"},
-jsx(LucideChevronLeft,{},)
-,)
-  )
-}
-
-export function Fragment_3b86a2fb9970db2458c6f3165a46970c () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-Fragment,
-{},
-((reflex___state____state__app___states___state____barber_state.available_times_for_selected_date_and_barber.length > 0) ? (jsx(
-Fragment,
-{},
-jsx(Div_5baed9a90b155c0ca4e8625d20bd5a2c,{},)
-,)) : (jsx(
-Fragment,
-{},
-jsx(
-"p",
-{className:"text-center text-gray-500 py-4"},
-"No hay horas disponibles para este barbero en este d\u00eda."
-,),))),)
-  )
-}
-
-export function Div_5baed9a90b155c0ca4e8625d20bd5a2c () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-
-
-
-  
-  return (
-    jsx(
-"div",
-{className:"grid grid-cols-3 sm:grid-cols-4 gap-3"},
-reflex___state____state__app___states___state____barber_state.available_times_for_selected_date_and_barber.map((time,index_043955ef7a1f9aa1)=>(jsx(
-"button",
-{className:((reflex___state____state__app___states___state____barber_state.selected_time === time) ? "w-full py-2 px-4 rounded-lg bg-blue-600 text-white font-semibold shadow-md" : "w-full py-2 px-4 rounded-lg bg-gray-100 hover:bg-blue-100 text-gray-800 font-medium transition-colors"),key:index_043955ef7a1f9aa1,onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.select_time", ({ ["time_str"] : time }), ({  })))], args, ({  })))),type:"button"},
-jsx(
-Moment,
-{format:"hh:mm A",parse:"HH:mm"},
-time
-,),))),)
-  )
-}
-
-export function P_89827b1f1fa89224ea6c6856c35b8b6f () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-"p",
-{},
-jsx(
-"span",
-{className:"font-semibold"},
-"Tel\u00e9fono: "
-,),(isTrue(reflex___state____state__app___states___state____barber_state.pending_appointment_data["phone"]) ? reflex___state____state__app___states___state____barber_state.pending_appointment_data["phone"] : "")
-,)
-  )
-}
-
-export function Moment_23fe52bfdb221d5a61736ac9175a03ab () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-Moment,
-{format:"hh:mm A",parse:"HH:mm"},
-reflex___state____state__app___states___state____barber_state.selected_time
-,)
-  )
-}
-
-export function Div_d2e486d82860f014cc592457f74d5e41 () {
-  
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  const on_click_dcc1792dd4de10b5282c28ad24a9a3f5 = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.cancel_confirmation", ({  }), ({  })))], args, ({  })))), [addEvents, Event])
-
-
-
-  
-  return (
-    jsx("div",{className:"fixed inset-0 z-40 bg-black/60 backdrop-blur-sm",onClick:on_click_dcc1792dd4de10b5282c28ad24a9a3f5},)
-
-  )
-}
-
-export function P_429a745b4f63ac9aec7fd69d06b7c16d () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-"p",
-{},
-jsx(
-"span",
-{className:"font-semibold"},
-"Barbero: "
-,),reflex___state____state__app___states___state____barber_state.selected_barber
-,)
-  )
-}
-
-export function H4_0933c81deb74f5d9071d8c05eac30e3c () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-"h4",
-{className:"font-semibold mb-4 text-center text-gray-700"},
-("Horas disponibles para "+reflex___state____state__app___states___state____barber_state.selected_barber+" el "+reflex___state____state__app___states___state____barber_state.selected_date)
-,)
-  )
-}
-
-export function Div_b69f2ac15a7386e49b2a0bb8d5d76cfe () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-
-
-
-  
-  return (
-    jsx(
-"div",
-{className:"flex flex-col gap-2"},
-reflex___state____state__app___states___state____barber_state.calendar_weeks.map((week,index_fb4cd2ea9511221a)=>(jsx(
-"div",
-{className:"grid grid-cols-7 gap-2",key:index_fb4cd2ea9511221a},
-week.map((day_data,index_5c6d58a5daefd389)=>(jsx(
-Fragment,
-{key:index_5c6d58a5daefd389},
-(isTrue(day_data["is_in_month"]) ? (jsx(
-Fragment,
-{},
-jsx(
-"button",
-{className:(isTrue(day_data["is_disabled"]) ? "p-2 rounded-full w-10 h-10 flex items-center justify-center text-gray-300 cursor-not-allowed" : (isTrue(day_data["is_selected"]) ? "p-2 rounded-full bg-blue-600 text-white w-10 h-10 flex items-center justify-center font-bold shadow-lg" : (isTrue(day_data["is_today"]) ? "p-2 rounded-full bg-blue-100 text-blue-600 w-10 h-10 flex items-center justify-center font-semibold" : "p-2 rounded-full hover:bg-gray-100 w-10 h-10 flex items-center justify-center transition-colors"))),disabled:day_data["is_disabled"],onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.select_date", ({ ["date_str"] : day_data["date_str"] }), ({  })))], args, ({  })))),type:"button"},
-day_data["day"]
-,),)) : (jsx(
-Fragment,
-{},
-jsx("div",{className:"p-2 w-10 h-10"},)
-,))),))),))),)
-  )
-}
-
-export function Fragment_422ef8cde804db56322ca17e875416fc () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-Fragment,
-{},
-((!((reflex___state____state__app___states___state____barber_state.selected_date === "")) && !((reflex___state____state__app___states___state____barber_state.selected_barber === ""))) ? (jsx(
-Fragment,
-{},
-jsx(
-"div",
-{className:"w-full mt-6"},
-jsx(H4_0933c81deb74f5d9071d8c05eac30e3c,{},)
-,jsx(Fragment_3b86a2fb9970db2458c6f3165a46970c,{},)
-,),)) : (jsx(Fragment,{},)
-)),)
-  )
-}
-
-export function P_9c2917450345670fdbc01395723cbed1 () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-"p",
-{},
-jsx(
-"span",
-{className:"font-semibold"},
-"Servicio: "
-,),(isTrue(reflex___state____state__app___states___state____barber_state.pending_appointment_data["service"]) ? reflex___state____state__app___states___state____barber_state.pending_appointment_data["service"] : "")
-,)
-  )
-}
-
-export function Button_6a57e89901a48b4d802108bdfb9233d9 () {
-  
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  const on_click_4d1195792cd8fb349de64d41a69ee466 = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.change_month", ({ ["delta"] : 1 }), ({  })))], args, ({  })))), [addEvents, Event])
-
-
-
-  
-  return (
-    jsx(
-"button",
-{className:"p-2 rounded-md hover:bg-gray-100",onClick:on_click_4d1195792cd8fb349de64d41a69ee466,type:"button"},
-jsx(LucideChevronRight,{},)
-,)
-  )
-}
-
-export function Select_07b9e00c14cb84a51a0531926e9150fc () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  const on_change_2e534a2a815c0cdc92f62a874cb81338 = useCallback(((_e) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.select_barber", ({ ["barber"] : _e["target"]["value"] }), ({  })))], [_e], ({  })))), [addEvents, Event])
-
-
-
-  
-  return (
-    jsx(
-"select",
-{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors appearance-none bg-white",onChange:on_change_2e534a2a815c0cdc92f62a874cb81338,value:reflex___state____state__app___states___state____barber_state.selected_barber},
-jsx(
-"option",
-{disabled:true,value:""},
-"Seleccione un barbero"
-,),reflex___state____state__app___states___state____barber_state.barber_names.map((barber,index_9020d5ed2a6003f3)=>(jsx(
-"option",
-{key:index_9020d5ed2a6003f3,value:barber},
-barber
-,))),)
-  )
-}
-
-export function Form_ce0b5356acc38d9bf5819a4022020146 () {
-  
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-  
-    const handleSubmit_080fb55a1df69d4eb75550ec4a8ad961 = useCallback((ev) => {
-        const $form = ev.target
-        ev.preventDefault()
-        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...({ ["service"] : getRefValue(refs["ref_service"]), ["name"] : getRefValue(refs["ref_name"]), ["phone"] : getRefValue(refs["ref_phone"]) })};
-
-        (((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.prepare_appointment", ({ ["form_data"] : form_data }), ({  })))], args, ({  }))))(ev));
-
-        if (false) {
-            $form.reset()
-        }
-    })
-    
-
-
-
-
-  
-  return (
-    jsx(
-"form",
-{className:"w-full",onSubmit:handleSubmit_080fb55a1df69d4eb75550ec4a8ad961},
-jsx(
-"div",
-{className:"flex flex-col items-center gap-4"},
-jsx(
-"div",
-{className:"flex flex-col items-center gap-4 w-full"},
-jsx(
-"div",
-{className:"w-full"},
-jsx(
-"div",
-{className:"flex items-center justify-between mb-4"},
-jsx(Button_70a48297308ae33ca05188f23feac1ce,{},)
-,jsx(H3_08c94965a27fedb77161ab9bac7c626a,{},)
-,jsx(Button_6a57e89901a48b4d802108bdfb9233d9,{},)
-,),jsx(Div_079186cdc5ed35fc1eff0c18d3c24b87,{},)
-,jsx(Div_b69f2ac15a7386e49b2a0bb8d5d76cfe,{},)
-,),jsx(Fragment_8eec24dbe8bcd2d895159f6e8e98efb3,{},)
-,jsx(Fragment_422ef8cde804db56322ca17e875416fc,{},)
-,),jsx(Fragment_f4f2086733c36ca48e829854ecddd010,{},)
-,),)
-  )
-}
-
-export function P_814e44555c2acaf525fcf967e74d5641 () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-"p",
-{},
-jsx(
-"span",
-{className:"font-semibold"},
-"Nombre: "
-,),(isTrue(reflex___state____state__app___states___state____barber_state.pending_appointment_data["name"]) ? reflex___state____state__app___states___state____barber_state.pending_appointment_data["name"] : "")
-,)
-  )
-}
-
-export function Button_5ad5e9158de854a0556d292f1405e701 () {
-  
-  const [addEvents, connectErrors] = useContext(EventLoopContext);
-
-
-  const on_click_2a8647827e3769f51c5c739cde744ad4 = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.confirm_appointment", ({  }), ({  })))], args, ({  })))), [addEvents, Event])
-
-
-
-  
-  return (
-    jsx(
-"button",
-{className:"w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors",onClick:on_click_2a8647827e3769f51c5c739cde744ad4,type:"button"},
-"Confirmar Cita"
-,)
-  )
-}
-
 export function Fragment_8c7d8c8828b78424b344dec021c42149 () {
   
   const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
@@ -604,7 +73,578 @@ jsx(Button_769511a1f448185b2b51f0ac8ce0dbdb,{},)
   )
 }
 
-export function Main_9a2e4171dca9b55f57461ca2d27df8fa () {
+export function P_54d5acd980c8ad364bfb31e9b7eff274 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+"p",
+{},
+jsx(
+"span",
+{className:"font-semibold"},
+"Fecha: "
+,),reflex___state____state__app___states___state____barber_state.selected_date
+,)
+  )
+}
+
+export function Form_cccc4e3bf7eaf8bde3d23663ef794590 () {
+  
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+  
+    const handleSubmit_6cb8bce8bfe5a590eb4351a74626e99f = useCallback((ev) => {
+        const $form = ev.target
+        ev.preventDefault()
+        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...({ ["phone"] : getRefValue(refs["ref_phone"]), ["service"] : getRefValue(refs["ref_service"]), ["name"] : getRefValue(refs["ref_name"]) })};
+
+        (((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.prepare_appointment", ({ ["form_data"] : form_data }), ({  })))], args, ({  }))))(ev));
+
+        if (false) {
+            $form.reset()
+        }
+    })
+    
+
+
+
+
+  
+  return (
+    jsx(
+"form",
+{className:"w-full",onSubmit:handleSubmit_6cb8bce8bfe5a590eb4351a74626e99f},
+jsx(
+"div",
+{className:"flex flex-col items-center gap-4"},
+jsx(
+"div",
+{className:"flex flex-col items-center gap-4 w-full"},
+jsx(
+"div",
+{className:"w-full"},
+jsx(
+"div",
+{className:"flex items-center justify-between mb-4"},
+jsx(Button_70a48297308ae33ca05188f23feac1ce,{},)
+,jsx(H3_08c94965a27fedb77161ab9bac7c626a,{},)
+,jsx(Button_6a57e89901a48b4d802108bdfb9233d9,{},)
+,),jsx(Div_8d0a838c40da59bc0119e45ee96c03d3,{},)
+,jsx(Div_a9bb8ca1349eb614f0ef62e77c0aa2cc,{},)
+,),jsx(Fragment_d75aa04dcb9d816907b3059bc1f6dd94,{},)
+,jsx(Fragment_04386471e5fb0175c218c22d5f9f1dfa,{},)
+,),jsx(Fragment_b286ad58352a408e4af7ecfc8b4ae6af,{},)
+,),)
+  )
+}
+
+export function P_429a745b4f63ac9aec7fd69d06b7c16d () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+"p",
+{},
+jsx(
+"span",
+{className:"font-semibold"},
+"Barbero: "
+,),reflex___state____state__app___states___state____barber_state.selected_barber
+,)
+  )
+}
+
+export function P_9c2917450345670fdbc01395723cbed1 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+"p",
+{},
+jsx(
+"span",
+{className:"font-semibold"},
+"Servicio: "
+,),(isTrue(reflex___state____state__app___states___state____barber_state.pending_appointment_data["service"]) ? reflex___state____state__app___states___state____barber_state.pending_appointment_data["service"] : "")
+,)
+  )
+}
+
+export function Div_d32f1f475a59a28ec906da0ce0544c0d () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+
+
+
+  
+  return (
+    jsx(
+"div",
+{className:"grid grid-cols-3 sm:grid-cols-4 gap-3"},
+reflex___state____state__app___states___state____barber_state.available_times_for_selected_date_and_barber.map((time,index_331211a9a5fe2312)=>(jsx(
+"button",
+{className:((reflex___state____state__app___states___state____barber_state.selected_time === time) ? "w-full py-2 px-4 rounded-lg bg-blue-600 text-white font-semibold shadow-md" : "w-full py-2 px-4 rounded-lg bg-gray-100 hover:bg-blue-100 text-gray-800 font-medium transition-colors"),key:index_331211a9a5fe2312,onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.select_time", ({ ["time_str"] : time }), ({  })))], args, ({  })))),type:"button"},
+jsx(
+Moment,
+{format:"hh:mm A",parse:"HH:mm"},
+time
+,),))),)
+  )
+}
+
+export function Div_d2e486d82860f014cc592457f74d5e41 () {
+  
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+  const on_click_dcc1792dd4de10b5282c28ad24a9a3f5 = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.cancel_confirmation", ({  }), ({  })))], args, ({  })))), [addEvents, Event])
+
+
+
+  
+  return (
+    jsx("div",{className:"fixed inset-0 z-40 bg-black/60 backdrop-blur-sm",onClick:on_click_dcc1792dd4de10b5282c28ad24a9a3f5},)
+
+  )
+}
+
+export function Button_6a57e89901a48b4d802108bdfb9233d9 () {
+  
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+  const on_click_4d1195792cd8fb349de64d41a69ee466 = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.change_month", ({ ["delta"] : 1 }), ({  })))], args, ({  })))), [addEvents, Event])
+
+
+
+  
+  return (
+    jsx(
+"button",
+{className:"p-2 rounded-md hover:bg-gray-100",onClick:on_click_4d1195792cd8fb349de64d41a69ee466,type:"button"},
+jsx(LucideChevronRight,{},)
+,)
+  )
+}
+
+export function P_89827b1f1fa89224ea6c6856c35b8b6f () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+"p",
+{},
+jsx(
+"span",
+{className:"font-semibold"},
+"Tel\u00e9fono: "
+,),(isTrue(reflex___state____state__app___states___state____barber_state.pending_appointment_data["phone"]) ? reflex___state____state__app___states___state____barber_state.pending_appointment_data["phone"] : "")
+,)
+  )
+}
+
+export function Moment_23fe52bfdb221d5a61736ac9175a03ab () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+Moment,
+{format:"hh:mm A",parse:"HH:mm"},
+reflex___state____state__app___states___state____barber_state.selected_time
+,)
+  )
+}
+
+export function Fragment_a13451fb3fff1516f7cae50562f09927 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+Fragment,
+{},
+((reflex___state____state__app___states___state____barber_state.available_times_for_selected_date_and_barber.length > 0) ? (jsx(
+Fragment,
+{},
+jsx(Div_d32f1f475a59a28ec906da0ce0544c0d,{},)
+,)) : (jsx(
+Fragment,
+{},
+jsx(
+"p",
+{className:"text-center text-gray-500 py-4"},
+"No hay horas disponibles para este barbero en este d\u00eda."
+,),))),)
+  )
+}
+
+export function Button_769511a1f448185b2b51f0ac8ce0dbdb () {
+  
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+  const on_click_dcc1792dd4de10b5282c28ad24a9a3f5 = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.cancel_confirmation", ({  }), ({  })))], args, ({  })))), [addEvents, Event])
+
+
+
+  
+  return (
+    jsx(
+"button",
+{className:"w-full sm:w-auto px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-medium transition-colors",onClick:on_click_dcc1792dd4de10b5282c28ad24a9a3f5,type:"button"},
+"Cancelar"
+,)
+  )
+}
+
+export function P_814e44555c2acaf525fcf967e74d5641 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+"p",
+{},
+jsx(
+"span",
+{className:"font-semibold"},
+"Nombre: "
+,),(isTrue(reflex___state____state__app___states___state____barber_state.pending_appointment_data["name"]) ? reflex___state____state__app___states___state____barber_state.pending_appointment_data["name"] : "")
+,)
+  )
+}
+
+export function H3_08c94965a27fedb77161ab9bac7c626a () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+"h3",
+{className:"font-semibold text-lg w-32 text-center"},
+reflex___state____state__app___states___state____barber_state.display_month_str
+,)
+  )
+}
+
+export function Fragment_d75aa04dcb9d816907b3059bc1f6dd94 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+Fragment,
+{},
+((!((reflex___state____state__app___states___state____barber_state.selected_date === "")) && (reflex___state____state__app___states___state____barber_state.barbers.length > 0)) ? (jsx(
+Fragment,
+{},
+jsx(
+"div",
+{className:"w-full mt-6"},
+jsx(H4_e9256af9d5b93f9ab19e8cc332d5511a,{},)
+,jsx(Select_cc026624b2624c5eafc8de10c66367c6,{},)
+,),)) : (jsx(Fragment,{},)
+)),)
+  )
+}
+
+export function Button_5ad5e9158de854a0556d292f1405e701 () {
+  
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+  const on_click_2a8647827e3769f51c5c739cde744ad4 = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.confirm_appointment", ({  }), ({  })))], args, ({  })))), [addEvents, Event])
+
+
+
+  
+  return (
+    jsx(
+"button",
+{className:"w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors",onClick:on_click_2a8647827e3769f51c5c739cde744ad4,type:"button"},
+"Confirmar Cita"
+,)
+  )
+}
+
+export function Button_70a48297308ae33ca05188f23feac1ce () {
+  
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+  const on_click_bbd51f1c91224877654c5e8e3e62e38f = useCallback(((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.change_month", ({ ["delta"] : -1 }), ({  })))], args, ({  })))), [addEvents, Event])
+
+
+
+  
+  return (
+    jsx(
+"button",
+{className:"p-2 rounded-md hover:bg-gray-100",onClick:on_click_bbd51f1c91224877654c5e8e3e62e38f,type:"button"},
+jsx(LucideChevronLeft,{},)
+,)
+  )
+}
+
+export function H4_e9256af9d5b93f9ab19e8cc332d5511a () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+"h4",
+{className:"font-semibold mb-4 text-center text-gray-700"},
+("Seleccione un barbero para "+reflex___state____state__app___states___state____barber_state.selected_date)
+,)
+  )
+}
+
+export function H4_0933c81deb74f5d9071d8c05eac30e3c () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+"h4",
+{className:"font-semibold mb-4 text-center text-gray-700"},
+("Horas disponibles para "+reflex___state____state__app___states___state____barber_state.selected_barber+" el "+reflex___state____state__app___states___state____barber_state.selected_date)
+,)
+  )
+}
+
+export function Select_0029451e8898985ab6b3004a2c4db4ac () {
+  
+  const ref_service = useRef(null); refs["ref_service"] = ref_service;
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+"select",
+{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors appearance-none bg-white",id:"service",name:"service",ref:ref_service,required:true},
+reflex___state____state__app___states___state____barber_state.services.map((service,index_a51ca40d180e5695)=>(jsx(
+"option",
+{key:index_a51ca40d180e5695,value:service["name"]},
+(service["name"]+" - $"+service["price"])
+,))),)
+  )
+}
+
+export function Fragment_b286ad58352a408e4af7ecfc8b4ae6af () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+  const ref_name = useRef(null); refs["ref_name"] = ref_name;
+  const ref_phone = useRef(null); refs["ref_phone"] = ref_phone;
+
+
+
+
+
+  
+  return (
+    jsx(
+Fragment,
+{},
+(!((reflex___state____state__app___states___state____barber_state.selected_time === "")) ? (jsx(
+Fragment,
+{},
+jsx(
+"div",
+{className:"flex flex-col items-center gap-4 w-full"},
+jsx("div",{className:"w-full border-t border-gray-200 my-6"},)
+,jsx(
+"div",
+{className:"w-full"},
+jsx(
+"label",
+{className:"block text-sm font-medium text-gray-700 mb-1",htmlFor:"name"},
+"Nombre Completo"
+,),jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors",id:"name",name:"name",placeholder:"Ej: Juan P\u00e9rez",ref:ref_name,required:true,type:"text"},)
+,),jsx(
+"div",
+{className:"w-full"},
+jsx(
+"label",
+{className:"block text-sm font-medium text-gray-700 mb-1",htmlFor:"phone"},
+"N\u00famero de Tel\u00e9fono"
+,),jsx("input",{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors",id:"phone",name:"phone",placeholder:"Ej: 55 1234 5678",ref:ref_phone,required:true,type:"tel"},)
+,),jsx(
+"div",
+{className:"w-full"},
+jsx(
+"label",
+{className:"block text-sm font-medium text-gray-700 mb-1",htmlFor:"service"},
+"Servicio"
+,),jsx(Select_0029451e8898985ab6b3004a2c4db4ac,{},)
+,),jsx(
+"button",
+{className:"w-full mt-4 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200 shadow-md hover:shadow-lg",type:"submit"},
+"Agendar Cita"
+,),),)) : (jsx(
+Fragment,
+{},
+jsx("div",{},)
+,))),)
+  )
+}
+
+export function Fragment_04386471e5fb0175c218c22d5f9f1dfa () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+
+
+
+
+
+  
+  return (
+    jsx(
+Fragment,
+{},
+((!((reflex___state____state__app___states___state____barber_state.selected_date === "")) && !((reflex___state____state__app___states___state____barber_state.selected_barber === ""))) ? (jsx(
+Fragment,
+{},
+jsx(
+"div",
+{className:"w-full mt-6"},
+jsx(H4_0933c81deb74f5d9071d8c05eac30e3c,{},)
+,jsx(Fragment_a13451fb3fff1516f7cae50562f09927,{},)
+,),)) : (jsx(Fragment,{},)
+)),)
+  )
+}
+
+export function Div_a9bb8ca1349eb614f0ef62e77c0aa2cc () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+
+
+
+  
+  return (
+    jsx(
+"div",
+{className:"flex flex-col gap-2"},
+reflex___state____state__app___states___state____barber_state.calendar_weeks.map((week,index_5a9d65ca2ba0f44d)=>(jsx(
+"div",
+{className:"grid grid-cols-7 gap-2",key:index_5a9d65ca2ba0f44d},
+week.map((day_data,index_4c537e8bd8e8be8c)=>(jsx(
+Fragment,
+{key:index_4c537e8bd8e8be8c},
+(isTrue(day_data["is_in_month"]) ? (jsx(
+Fragment,
+{},
+jsx(
+"button",
+{className:(isTrue(day_data["is_disabled"]) ? "p-2 rounded-full w-10 h-10 flex items-center justify-center text-gray-300 cursor-not-allowed" : (isTrue(day_data["is_selected"]) ? "p-2 rounded-full bg-blue-600 text-white w-10 h-10 flex items-center justify-center font-bold shadow-lg" : (isTrue(day_data["is_today"]) ? "p-2 rounded-full bg-blue-100 text-blue-600 w-10 h-10 flex items-center justify-center font-semibold" : "p-2 rounded-full hover:bg-gray-100 w-10 h-10 flex items-center justify-center transition-colors"))),disabled:day_data["is_disabled"],onClick:((...args) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.select_date", ({ ["date_str"] : day_data["date_str"] }), ({  })))], args, ({  })))),type:"button"},
+day_data["day"]
+,),)) : (jsx(
+Fragment,
+{},
+jsx("div",{className:"p-2 w-10 h-10"},)
+,))),))),))),)
+  )
+}
+
+export function Select_cc026624b2624c5eafc8de10c66367c6 () {
+  
+  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
+  const [addEvents, connectErrors] = useContext(EventLoopContext);
+
+
+  const on_change_2e534a2a815c0cdc92f62a874cb81338 = useCallback(((_e) => (addEvents([(Event("reflex___state____state.app___states___state____barber_state.select_barber", ({ ["barber"] : _e["target"]["value"] }), ({  })))], [_e], ({  })))), [addEvents, Event])
+
+
+
+  
+  return (
+    jsx(
+"select",
+{className:"w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors appearance-none bg-white",onChange:on_change_2e534a2a815c0cdc92f62a874cb81338,value:reflex___state____state__app___states___state____barber_state.selected_barber},
+jsx(
+"option",
+{disabled:true,value:""},
+"Seleccione un barbero"
+,),reflex___state____state__app___states___state____barber_state.barber_names.map((barber,index_115184eeaa74236a)=>(jsx(
+"option",
+{key:index_115184eeaa74236a,value:barber},
+barber
+,))),)
+  )
+}
+
+export function Main_a8d1de933e56a616fcb3a277fdb43b30 () {
   
   
                 useEffect(() => {
@@ -650,7 +690,7 @@ jsx(Fragment_8c7d8c8828b78424b344dec021c42149,{},)
 "h2",
 {className:"text-2xl font-bold text-gray-800 mb-6 text-center"},
 "Agendar Nueva Cita"
-,),jsx(Form_ce0b5356acc38d9bf5819a4022020146,{},)
+,),jsx(Form_cccc4e3bf7eaf8bde3d23663ef794590,{},)
 ,),jsx(
 "div",
 {className:"w-full max-w-3xl mt-8 text-center"},
@@ -662,47 +702,7 @@ jsx(
   )
 }
 
-export function H3_08c94965a27fedb77161ab9bac7c626a () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-"h3",
-{className:"font-semibold text-lg w-32 text-center"},
-reflex___state____state__app___states___state____barber_state.display_month_str
-,)
-  )
-}
-
-export function P_54d5acd980c8ad364bfb31e9b7eff274 () {
-  
-  const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
-
-
-
-
-
-  
-  return (
-    jsx(
-"p",
-{},
-jsx(
-"span",
-{className:"font-semibold"},
-"Fecha: "
-,),reflex___state____state__app___states___state____barber_state.selected_date
-,)
-  )
-}
-
-export function Div_079186cdc5ed35fc1eff0c18d3c24b87 () {
+export function Div_8d0a838c40da59bc0119e45ee96c03d3 () {
   
   const reflex___state____state__app___states___state____barber_state = useContext(StateContexts.reflex___state____state__app___states___state____barber_state)
 
@@ -715,9 +715,9 @@ export function Div_079186cdc5ed35fc1eff0c18d3c24b87 () {
     jsx(
 "div",
 {className:"grid grid-cols-7 gap-2 mb-2"},
-reflex___state____state__app___states___state____barber_state.week_days.map((day,index_a55892d729f440a9)=>(jsx(
+reflex___state____state__app___states___state____barber_state.week_days.map((day,index_d616850d3954471b)=>(jsx(
 "div",
-{className:"text-center font-medium text-sm text-gray-500",key:index_a55892d729f440a9},
+{className:"text-center font-medium text-sm text-gray-500",key:index_d616850d3954471b},
 day
 ,))),)
   )
@@ -733,7 +733,7 @@ export default function Component() {
     jsx(
 Fragment,
 {},
-jsx(Main_9a2e4171dca9b55f57461ca2d27df8fa,{},)
+jsx(Main_a8d1de933e56a616fcb3a277fdb43b30,{},)
 ,jsx(
 NextHead,
 {},
