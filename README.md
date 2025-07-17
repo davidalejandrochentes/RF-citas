@@ -5,9 +5,15 @@ Este proyecto es una aplicación web para agendar citas en una barbería, desarr
 
 ## 🎥 Video Demostración
 
-Puedes ver una demostración completa de la aplicación en el siguiente video:
+Haz clic en la siguiente imagen para ver una demostración completa de la aplicación en YouTube.
 
-[![Demostración de la Agenda de Citas en YouTube](https://img.youtube.com/vi/9fqmLlZ0zAg/hqdefault.jpg)](https://youtu.be/9fqmLlZ0zAg)
+<a href="https://youtu.be/9fqmLlZ0zAg" target="_blank" title="Haz clic para ver el video en YouTube">
+  <img src="https://img.youtube.com/vi/9fqmLlZ0zAg/hqdefault.jpg" alt="Demostración de la Agenda de Citas en YouTube" style="max-width: 600px; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+</a>
+
+<p align="center">
+  <strong>O visita el enlace directo:</strong> <a href="https://youtu.be/9fqmLlZ0zAg">https://youtu.be/9fqmLlZ0zAg</a>
+</p>
 
 ## ✨ Características Principales
 
