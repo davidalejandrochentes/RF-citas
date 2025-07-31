@@ -29,11 +29,17 @@ Haz clic en la siguiente imagen para ver una demostración completa de la aplica
 
 ## 🛠️ Tecnologías Utilizadas
 
-- **Framework Backend/Frontend**: [Reflex](https://reflex.dev/) (Python)
-- **Base de Datos**: SQLite
-- **Estilos**: [TailwindCSS](https://tailwindcss.com/)
-- **Servidor Web/Proxy Inverso**: [Caddy](https://caddyserver.com/)
-- **Contenerización**: [Docker](https://www.docker.com/)
+*   **Framework Principal:**
+    *   ![Reflex](https://img.shields.io/badge/Reflex-0.7.14-5646ED?style=for-the-badge&logo=reflex&logoColor=white)
+    *   ![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)
+*   **Estilos:**
+    *   ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+*   **Base de Datos:**
+    *   ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white) (Desarrollo)
+    *   ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white) (Producción)
+*   **Despliegue:**
+    *   ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+    *   ![Caddy](https://img.shields.io/badge/Caddy-0055FF?style=for-the-badge&logo=caddy&logoColor=white)
 
 ## 🚀 Cómo Empezar
 
